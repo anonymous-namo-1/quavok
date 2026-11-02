@@ -1,0 +1,20 @@
+{
+  "name": "Demo Salon (example)",
+  "address": "SCO 12, Sector 00, Example City (fictional)",
+  "maps": "https://maps.google.com/?q=Example+City",
+  "hours": "Tue–Sun, 10:00 AM – 8:00 PM (Monday closed)",
+  "slots": ["10:00 AM","11:30 AM","1:00 PM","3:00 PM","4:30 PM","6:00 PM"],
+  "services": [
+    {"id":"haircut-w","name":"Haircut (Women)","price":600,"mins":45},
+    {"id":"haircut-m","name":"Haircut (Men)","price":300,"mins":30},
+    {"id":"color","name":"Global Hair Colour","price":2500,"mins":120},
+    {"id":"facial","name":"Facial (Classic)","price":1200,"mins":60},
+    {"id":"wax","name":"Full Arms Waxing","price":400,"mins":30},
+    {"id":"mani","name":"Manicure + Pedicure","price":1000,"mins":75}
+  ],
+  "bridal": [
+    {"name":"Bridal Basic","price":12000,"includes":"HD makeup, hairstyling, draping"},
+    {"name":"Bridal Premium","price":22000,"includes":"Airbrush makeup, hairstyling, draping, pre-bridal facial, nails"},
+    {"name":"Engagement / Party","price":5000,"includes":"Party makeup + hairstyling"}
+  ]
+}

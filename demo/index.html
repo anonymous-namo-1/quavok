@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live demo – AI salon assistant | Syntheight</title><meta name="robots" content="noindex">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#eef0f5;color:#1d2230}
+.wrap{max-width:480px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;background:#f7f8fb}
+.top{background:#3b2a6b;color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px}
+.av{width:38px;height:38px;border-radius:50%;background:#f0b84f;display:grid;place-items:center;font-weight:700;color:#3b2a6b}
+.top small{display:block;opacity:.8;font-size:12px}.top a{margin-left:auto;color:#fff;font-size:12px}
+.note{background:#fff7e0;font-size:12px;padding:6px 12px;text-align:center;border-bottom:1px solid #eadfb8}
+#log{flex:1;overflow-y:auto;padding:14px}
+.m{max-width:82%;padding:9px 12px;border-radius:14px;margin:6px 0;white-space:pre-wrap;line-height:1.4;font-size:15px}
+.b{background:#fff;border:1px solid #e3e5ec;border-bottom-left-radius:4px}.u{background:#5b46a8;color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+.sys{background:#e8f6ee;border:1px dashed #5aa97b;max-width:100%;font-size:13.5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 8px}.chips button{border:1px solid #5b46a8;background:#fff;color:#5b46a8;border-radius:16px;padding:6px 11px;font-size:13.5px;cursor:pointer}
+form{display:flex;gap:8px;padding:10px;background:#fff;border-top:1px solid #e3e5ec}
+input{flex:1;padding:11px 14px;border:1px solid #ccd;border-radius:22px;font-size:15px}form button{background:#5b46a8;color:#fff;border:0;border-radius:22px;padding:0 18px;font-size:15px}
+</style></head><body><div class="wrap">
+<div class="top"><div class="av">DS</div><div><b>Demo Salon (example)</b><small>AI assistant · replies instantly</small></div><a href="../">← Syntheight</a></div>
+<div class="note">Demo with a fictional salon. Prices are examples. Try: "price", "timings", "bridal", "book"</div>
+<div id="log"></div>
+<form id="f"><input id="i" placeholder="Type a message…" autocomplete="off"><button>Send</button></form>
+</div>
+<script>
+let S,st={step:null,b:{}};const log=document.getElementById('log');
+const rs=n=>'₹'+n.toLocaleString('en-IN');
+function add(t,c='b'){const d=document.createElement('div');d.className='m '+c;d.textContent=t;log.appendChild(d);log.scrollTop=1e9}
+function chips(a){const d=document.createElement('div');d.className='chips';a.forEach(x=>{const b=document.createElement('button');b.type='button';b.textContent=x;b.onclick=()=>{d.remove();send(x)};d.appendChild(b)});log.appendChild(d);log.scrollTop=1e9}
+function bot(t,c,cls){setTimeout(()=>{add(t,cls||'b');if(c)chips(c)},450)}
+const menu=['Prices','Timings','Location','Bridal packages','Book appointment'];
+function days(){const o=[],f={weekday:'short',day:'numeric',month:'short'};let d=new Date();while(o.length<5){d.setDate(d.getDate()+1);if(d.getDay()!==1)o.push(d.toLocaleDateString('en-IN',f))}return o}
+function send(t){t=t.trim();if(!t)return;add(t,'u');reply(t)}
+function reply(t){const q=t.toLowerCase(),b=st.b;
+ if(/human|owner|person|staff|call me|baat/.test(q)){st.step=null;return bot("Sure! I've let the salon team know — someone will call/message you shortly. 🙏\n(In a real setup the owner gets an instant alert here.)",menu)}
+ if(/are you (a )?(bot|ai|human|real)|robot/.test(q))return bot("I'm Demo Salon's AI assistant 🤖. I can answer questions and book appointments — or connect you to the team anytime, just type \"talk to human\".",menu);
+ if(st.step==='svc'){const s=S.services.find(x=>x.name.toLowerCase()===q)||S.services.find(x=>q.includes(x.name.toLowerCase().split(' ')[0].toLowerCase()));if(!s)return bot("Please pick a service:",S.services.map(x=>x.name));b.s=s;st.step='date';return bot(`${s.name} – ${rs(s.price)} (~${s.mins} min). Which day?`,days())}
+ if(st.step==='date'){b.d=t;st.step='time';return bot(`Available slots on ${t}:`,S.slots)}
+ if(st.step==='time'){if(!S.slots.includes(t.toUpperCase().replace(/\s+/g,' ').replace(/(\d)(AM|PM)/,'$1 $2'))&&!S.slots.includes(t))return bot("Please choose one of the slots:",S.slots);b.t=t;st.step='name';return bot("Great! What name should I book it under?")}
+ if(st.step==='name'){b.n=t;st.step=null;const id='DS'+Math.floor(1000+Math.random()*9000);
+  bot(`✅ Booked!\n${b.n}, ${b.s.name}\n📅 ${b.d}, ${b.t}\n💰 ${rs(b.s.price)} (pay at salon)\n📍 ${S.address}\nRef: ${id}\nReply "reschedule" anytime to change.`);
+  setTimeout(()=>add(`⏰ Sample reminder (sent automatically the day before):\n"Hi ${b.n}! Reminder: ${b.s.name} tomorrow at ${b.t} at Demo Salon. Reply 1 to confirm, 2 to reschedule. See you! 💇"`,'m sys'),1300);
+  setTimeout(()=>{add(`📊 Sample 9 PM owner summary (sent to the owner daily):\nEnquiries today: 14 · Answered: 14 (avg reply < 5 sec)\nNew bookings: 5 (incl. ${b.n} – ${b.s.name}, ${b.d} ${b.t})\nBridal leads: 2 → follow-up scheduled\nNeeds you: 1 customer asked for a human\nTomorrow: 7 appointments, reminders sent ✅\n(Sample numbers for illustration)`,'m sys');chips(['Start again'])},2300);return}
+ if(/^(book|appoint|slot|reschedul)|book|appointment|booking/.test(q)){st.step='svc';st.b={};return bot("Let's book! Which service?",S.services.map(x=>x.name))}
+ if(/bridal|bride|shaadi|wedding|engagement|party makeup/.test(q))return bot("💍 Bridal & occasion packages:\n"+S.bridal.map(x=>`• ${x.name} – ${rs(x.price)}\n   ${x.includes}`).join('\n')+"\nWant to book a free trial consultation?",['Book appointment','Talk to human']);
+ if(/price|rate|cost|charge|kitna|menu|rates|haircut|facial|colou?r|wax|mani|pedi/.test(q))return bot("💇 Price list:\n"+S.services.map(x=>`• ${x.name} – ${rs(x.price)}`).join('\n'),['Book appointment','Bridal packages']);
+ if(/time|timing|open|close|hours|kab|monday|sunday/.test(q))return bot("🕙 "+S.hours,['Book appointment','Location']);
+ if(/where|location|address|kahan|map|direction/.test(q))return bot("📍 "+S.address+"\nMap: "+S.maps,['Book appointment','Timings']);
+ if(/^(hi|hello|hey|namaste|start)/.test(q))return bot(`Namaste! 👋 Welcome to ${S.name}. How can I help?`,menu);
+ bot("I can help with prices, timings, location, bridal packages or booking. For anything else, type \"talk to human\" and the team will reply.",menu)}
+document.getElementById('f').onsubmit=e=>{e.preventDefault();const i=document.getElementById('i');send(i.value);i.value=''};
+fetch('salon.json').then(r=>r.json()).then(j=>{S=j;add(`Namaste! 👋 Welcome to ${S.name}. I'm the salon's AI assistant. Ask me anything or book an appointment.`);chips(menu)});
+</script></body></html>
