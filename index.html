@@ -1,86 +1,156 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Syntheight | AI front desk on WhatsApp for salons</title>
-<meta name="description" content="Syntheight puts an AI assistant on your WhatsApp that answers enquiries, books appointments and follows up. Built and run for you.">
-<style>
-:root{--ink:#14131a;--muted:#5b5a66;--brand:#6c3cf0;--bg:#faf9fe;--card:#fff;--wa:#25d366}
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
-a{color:var(--brand)}.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
-header{display:flex;justify-content:space-between;align-items:center;padding:18px 0}.logo{font-weight:800;font-size:1.3rem;letter-spacing:-.02em}.logo span{color:var(--brand)}
-nav a{margin-left:18px;text-decoration:none;color:var(--muted);font-weight:500}
-.hero{padding:56px 0 40px}.hero h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;margin:0 0 16px;letter-spacing:-.03em}.hero p{font-size:1.15rem;color:var(--muted);max-width:640px}
-.btn{display:inline-block;padding:13px 22px;border-radius:10px;font-weight:700;text-decoration:none;margin:8px 10px 0 0}.btn.primary{background:var(--brand);color:#fff}.btn.wa{background:var(--wa);color:#063}
-section{padding:44px 0}h2{font-size:1.8rem;letter-spacing:-.02em;margin:0 0 18px}
-.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
-.card{background:var(--card);border:1px solid #e7e4f3;border-radius:14px;padding:22px}.card h3{margin:0 0 8px}
-.price{font-size:1.7rem;font-weight:800}.price small{font-size:.9rem;color:var(--muted);font-weight:500}
-.card ul{padding-left:18px;margin:10px 0 0;color:var(--muted)}.tag{display:inline-block;background:#efe9ff;color:var(--brand);border-radius:99px;padding:3px 10px;font-size:.8rem;font-weight:700}
-.pilot{background:linear-gradient(135deg,#6c3cf0,#9b6bff);color:#fff;border-radius:18px;padding:30px}.pilot a.btn{background:#fff;color:var(--brand)}
-.note{color:var(--muted);font-size:.92rem}footer{padding:30px 0 60px;color:var(--muted);font-size:.9rem;border-top:1px solid #e7e4f3}footer a{color:var(--muted)}
-.float-wa{position:fixed;right:18px;bottom:18px;background:var(--wa);color:#063;font-weight:800;padding:14px 18px;border-radius:99px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.18)}
-</style>
-</head>
-<body>
-<div class="wrap">
-<header><div class="logo">Synth<span>eight</span></div><nav><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#pilot">Pilot</a></nav></header>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quavok · AI assistants for your WhatsApp, built and run for you</title>
+<meta name="description" content="Quavok sets up AI assistants that answer WhatsApp enquiries, book appointments, send reminders and follow-ups, and send you a daily summary. Done for you, controlled from WhatsApp.">
+<meta property="og:title" content="Quavok · Your 24/7 front desk on WhatsApp"><meta property="og:description" content="AI assistants that answer, book and follow up, built and run for you.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235b4cf0'/%3E%3Ccircle cx='15' cy='15' r='7' fill='none' stroke='white' stroke-width='2.8'/%3E%3Cpath d='M20 20l5 5' stroke='white' stroke-width='2.8' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css"></head><body><svg width="0" height="0" style="position:absolute" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><defs>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-msg" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></symbol>
+<symbol id="i-calx" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M10 14l4 4M14 14l-4 4"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></symbol>
+<symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></symbol>
+<symbol id="i-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8M12 17v4M7 10l2 2-2 2M12 14h4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+<symbol id="i-logo" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m12.5 12.5 7 7"/></symbol>
+</defs></svg>
 
-<div class="hero">
-<span class="tag">For salons &amp; beauty studios</span>
-<h1>Your 24/7 front desk on WhatsApp.</h1>
-<p>We put an AI assistant on your WhatsApp that answers every enquiry, books appointments and follows up, so you get your evenings back. We build it, run it, and you steer it from WhatsApp.</p>
-<a class="btn primary" href="#book">Book a free 15-min call</a><a class="btn wa" href="https://wa.me/919041315226?text=Hi%20Syntheight%2C%20I%27d%20like%20a%20free%20call">Chat on WhatsApp</a><a class="btn primary" href="demo/">Try the live demo</a>
-<p class="note">Aapke salon pe din bhar "rate kya hai?", "slot hai kya?" aate hain. Busy time pe reply miss ho jaata hai. Hum woh handle karte hain.</p>
-</div>
-</div>
+<header class="nav" id="nav"><div class="c">
+<a href="./" class="logo"><span class="mk"><svg><use href="#i-logo"/></svg></span><span>qua<b>vok</b></span></a>
+<nav><a href="#how">How it works</a><a href="#automate">What we automate</a><a href="#demo">Live demo</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+<a class="btn btn-p" href="https://wa.me/919041315226?text=Hi%20Quavok%2C%20I%27d%20like%20to%20book%20a%20free%20call" target="_blank" rel="noopener">Book a free call</a>
+</div></header>
 
-<section id="how"><div class="wrap">
-<h2>What it does</h2>
-<div class="grid">
-<div class="card"><h3>Answers instantly</h3><p>Prices, timings, services, location. Replies in English, Hindi or Hinglish, even on a packed Saturday evening.</p></div>
-<div class="card"><h3>Books &amp; reminds</h3><p>Offers open slots, takes the booking, and sends a reminder before the appointment.</p></div>
-<div class="card"><h3>Follows up</h3><p>Rebooking nudges and review requests after the visit (Growth plan).</p></div>
-<div class="card"><h3>Hands over to you</h3><p>Anything tricky gets flagged to you or your staff, and you get a summary every night at 9 PM.</p></div>
+<section class="hero"><div class="c">
+<div>
+<span class="eyebrow"><svg width="14" height="14"><use href="#i-zap"/></svg> Done-for-you AI automation for Indian businesses</span>
+<h1 style="margin-top:22px">Never miss a <span class="g">WhatsApp enquiry</span> again.</h1>
+<p class="lead">We put an AI assistant on your WhatsApp that answers every enquiry, books appointments and follows up, so you get your evenings back. We build it, run it and tune it. You steer it from WhatsApp.</p>
+<div class="ctas"><a class="btn btn-wa" href="https://wa.me/919041315226?text=Hi%20Quavok%2C%20I%27d%20like%20to%20book%20a%20free%20call" target="_blank" rel="noopener"><svg><use href="#i-msg"/></svg>Book a free call</a><a class="btn btn-g" href="demo/"><svg><use href="#i-play"/></svg>Try the live demo</a></div>
+<div class="ticks"><span><svg><use href="#i-check"/></svg>Replies in English &amp; Hinglish</span><span><svg><use href="#i-check"/></svg>Hands over to you anytime</span><span><svg><use href="#i-check"/></svg>Cancel with 30 days' notice</span></div>
 </div>
-<h2 style="margin-top:36px">How we get you live</h2>
-<div class="grid">
-<div class="card"><span class="tag">Step 1</span><h3>Audit call</h3><p>30 minutes on how enquiries and bookings work at your salon today.</p></div>
-<div class="card"><span class="tag">Step 2</span><h3>We build it</h3><p>Your own separate assistant, trained on your price list and services.</p></div>
-<div class="card"><span class="tag">Step 3</span><h3>You steer it on WhatsApp</h3><p>Change prices, timings or offers by messaging us. No dashboards to learn.</p></div>
+<div class="stage">
+<div class="phone"><div class="scr">
+<div class="wah"><div class="av">GS</div><div><b>Glow Studio</b><small>AI assistant · online</small></div></div>
+<div class="wab">
+<div class="bb out">Hi, bridal makeup ka rate kya hai? Sunday slot hai? <i>8:42 pm</i></div>
+<div class="bb in">Namaste! 💍 Bridal packages start at ₹15,000 (makeup, hair &amp; draping). Sunday mein 11 AM aur 3 PM free hain. Trial book karein? <i>8:42 pm</i></div>
+<div class="bb out">3 PM please, naam Priya <i>8:43 pm</i></div>
+<div class="bb in bk">✅ <b>Booked</b> · Priya<br>Bridal trial · Sun, 3:00 PM<br>Reminder will come a day before. <i>8:43 pm</i></div>
+<div class="bb in">Kuch aur help chahiye? Aap "talk to human" likh ke team se baat kar sakti hain 🙏 <i>8:43 pm</i></div>
 </div>
+<div class="waf"><div>Message</div><span><svg><use href="#i-send"/></svg></span></div>
+</div></div>
+<div class="float f1"><span class="ico gr" style="margin:0"><svg><use href="#i-cal"/></svg></span><div><b>New booking</b><small>Added to calendar</small></div></div>
+<div class="float f2"><span class="ico" style="margin:0"><svg><use href="#i-chart"/></svg></span><div><b>9 PM summary</b><small>Sent to the owner</small></div></div>
+</div>
+</div><p class="c" style="font-size:12px;color:var(--mute);margin-top:26px">Illustration: a sample conversation with a fictional salon.</p></section>
+
+<section class="alt" id="problem"><div class="c">
+<div class="sh rv"><span class="eyebrow">The problem</span><h2>Your busiest hours are when enquiries go unanswered.</h2><p>When you're with a client, the phone keeps buzzing. By the time you reply, the customer has booked somewhere else.</p></div>
+<div class="grid3">
+<div class="card rv"><div class="ico r"><svg><use href="#i-clock"/></svg></div><h3>Slow replies lose bookings</h3><p>People message 3 or 4 places at once and book with whoever replies first. During rush hour that's rarely you.</p></div>
+<div class="card rv"><div class="ico a"><svg><use href="#i-calx"/></svg></div><h3>No-shows and forgotten follow-ups</h3><p>Reminders, rebooking nudges and review requests take time, so they quietly stop getting sent.</p></div>
+<div class="card rv"><div class="ico y"><svg><use href="#i-moon"/></svg></div><h3>Evenings spent on your phone</h3><p>The same questions every day: rates, timings, location, "slot hai kya?". You end up answering them at 11 PM.</p></div>
+</div>
+<div class="qs rv"><span>"Rate kitna hai?"</span><span>"Kal 5 baje slot hai?"</span><span>"Location bhejo"</span><span>"Sunday open ho?"</span><span>"Bridal package?"</span><span>"Reschedule kar do"</span></div>
 </div></section>
 
-<section id="pricing"><div class="wrap">
-<h2>Pricing</h2>
-<div class="grid">
-<div class="card"><h3>Audit</h3><div class="price">₹2,999 <small>one-time</small></div><ul><li>30-min call + 1-page report</li><li>Top 3 tasks to automate</li><li>Fully credited to setup if you sign within 14 days</li></ul></div>
-<div class="card"><h3>Starter</h3><div class="price">₹4,999 <small>/mo</small></div><p class="note">+ ₹9,999 setup, or ₹49,990/yr with setup waived</p><ul><li>1 workflow: enquiry bot or booking + reminders</li><li>500 AI conversations/mo</li><li>Daily summary, human handover</li><li>2 changes/mo via WhatsApp</li></ul></div>
-<div class="card"><span class="tag">Most popular</span><h3>Growth</h3><div class="price">₹9,999 <small>/mo</small></div><p class="note">+ ₹14,999 setup, or ₹99,990/yr with setup waived</p><ul><li>Up to 3 workflows incl. follow-ups &amp; review requests</li><li>1,500 AI conversations/mo, up to 2 locations</li><li>Google Sheet/CRM sync, monthly report</li><li>Unlimited small changes, same-day support</li></ul></div>
-<div class="card"><h3>Managed Ops</h3><div class="price">₹19,999 <small>/mo</small></div><p class="note">+ ₹24,999 setup, or ₹1,99,990/yr with setup waived</p><ul><li>Up to 6 workflows</li><li>Automates 1–2 apps that have no API (booking software, portals)</li><li>4,000 AI conversations/mo, up to 3 locations</li><li>Weekly tuning, 4-hr priority support</li></ul></div>
-</div>
-<p class="note">Prices in INR. We aren't GST-registered yet, so no GST is charged. WhatsApp message fees from Meta are passed through at cost. Monthly billing, cancel with 30 days' notice. You own your data.</p>
-</div></section>
-
-<section id="pilot"><div class="wrap"><div class="pilot">
-<h2>3 pilot spots: 50% off for 3 months</h2>
-<p>We're new, so we're looking for 3 salons to start with. You get a free audit, no setup fee, and Starter at ₹2,499/mo or Growth at ₹4,999/mo for your first 3 months. Cancel anytime during the pilot.</p>
-<p>In return, if you're happy after 30 days, we'd ask for an honest testimonial and permission to share anonymised numbers. Never scripted, never required to be positive.</p>
-<a class="btn" href="#book">Claim a pilot spot</a>
+<section id="how"><div class="c">
+<div class="sh ctr rv"><span class="eyebrow">How it works</span><h2>Live in about a week, in 3 steps.</h2><p>You don't need to learn any software. We do the setup, and you approve it on WhatsApp.</p></div>
+<div class="steps">
+<div class="step rv"><div class="n">1</div><h3>Free call &amp; audit</h3><p>A 20-minute call. We look at how enquiries, bookings and follow-ups work today and pick the 1–3 jobs worth automating first.</p><span class="t">You: 20 minutes</span></div>
+<div class="step rv"><div class="n">2</div><h3>We build your assistant</h3><p>We load your services, prices, timings and tone of voice, connect your calendar, and test it with you on WhatsApp before it goes live.</p><span class="t">Us: setup &amp; testing</span></div>
+<div class="step rv"><div class="n">3</div><h3>It runs, you steer</h3><p>It answers and books around the clock. You get a summary every night and can change anything by sending us a WhatsApp message.</p><span class="t">Ongoing: we monitor &amp; tune</span></div>
 </div></div></section>
 
-<section id="proof"><div class="wrap">
-<h2>Results</h2>
-<div class="card"><h3>Client #0: Namaste TV</h3><p>We're running our own automation for Namaste TV first. Real numbers will go here once it has been live long enough to measure. We don't publish estimates as results.</p></div>
+<section class="alt" id="automate"><div class="c">
+<div class="sh rv"><span class="eyebrow">What we automate</span><h2>One assistant that covers the whole front desk.</h2><p>Start with one workflow and add more as you grow. Each client gets their own separate assistant.</p></div>
+<div class="bento">
+<div class="card rv"><div class="ico"><svg><use href="#i-bot"/></svg></div><h3>WhatsApp support bot</h3><p>Answers prices, timings, location and package questions instantly, in English or Hinglish. Anything tricky goes straight to you.</p>
+<div class="mini"><div class="bb out">Facial ka price?</div><div class="bb in">Classic facial ₹1,200 · Hydra facial ₹2,500. Book karna hai? 🙂</div></div></div>
+<div class="card rv"><div class="ico gr"><svg><use href="#i-cal"/></svg></div><h3>Bookings &amp; reminders</h3><p>Shows free slots, takes the booking and sends a reminder the day before. Customers can confirm or reschedule with one reply.</p>
+<div class="mini"><div class="bb in">⏰ Reminder: Haircut tomorrow at 5 PM. Reply 1 to confirm, 2 to reschedule.</div><div class="bb out">1</div></div></div>
+<div class="card rv"><div class="ico b"><svg><use href="#i-send"/></svg></div><h3>Follow-ups</h3><p>Rebooking nudges, review requests and gentle follow-ups for leads who went quiet, over WhatsApp or email.</p></div>
+<div class="card rv"><div class="ico a"><svg><use href="#i-chart"/></svg></div><h3>Daily owner summary</h3><p>Every night at 9 PM: enquiries, bookings, and who needs a reply from you.</p>
+<div class="sum"><b>Today</b> · sample<br>Enquiries 14 · <em>all answered</em><br>Bookings 5 · Needs you 1</div></div>
+<div class="card rv"><div class="ico"><svg><use href="#i-monitor"/></svg></div><h3>Apps with no API <span class="pill">Managed Ops</span></h3><p>Booking software or portals without an integration? Our browser agents can work them the way a person would. We check each app before we promise it.</p></div>
+</div></div></section>
+
+<section id="demo"><div class="c demo">
+<div class="rv"><span class="eyebrow">Live demo</span><h2 style="margin-top:14px">Try it yourself. Book a fake appointment.</h2>
+<p class="lead" style="margin-top:14px">This is a working demo for a fictional salon. Ask about prices or bridal packages, book a slot, or type "talk to human".</p>
+<ul><li><svg><use href="#i-check"/></svg>Answers common questions instantly</li><li><svg><use href="#i-check"/></svg>Books a slot from start to confirmation</li><li><svg><use href="#i-check"/></svg>Shows the reminder and the nightly owner summary</li><li><svg><use href="#i-check"/></svg>Says it's an AI if asked, and hands over to a human</li></ul>
+<a class="btn btn-p" href="demo/">Open full-screen demo <svg><use href="#i-arrow"/></svg></a></div>
+<div class="stage rv"><div class="phone"><div class="scr"><iframe src="demo/?embed=1" title="Quavok live salon demo" loading="lazy"></iframe></div></div></div>
 </div></section>
 
-<section id="book"><div class="wrap">
-<h2>Book a call</h2>
-<p>15 minutes, no pressure. Tell us your salon's name and city on WhatsApp and pick a time.</p>
-<a class="btn wa" href="https://wa.me/919041315226?text=Hi%20Syntheight%2C%20I%27d%20like%20a%20free%20call">Message us on WhatsApp</a>
+<section class="alt" id="pricing"><div class="c">
+<div class="sh ctr rv"><span class="eyebrow">Pricing</span><h2>Simple plans. No lock-in.</h2><p>All prices in INR, plus 18% GST. Meta's WhatsApp message fees are passed through at cost.</p>
+<div class="tog" role="group" aria-label="Billing period"><button class="on" data-p="m">Monthly</button><button data-p="y">Yearly <small>2 months free</small></button></div></div>
+<div class="plans">
+<div class="plan rv"><h3>Audit</h3><p class="muted">Find out what's worth automating before you commit.</p>
+<div class="price">₹2,999<small> one-time</small></div><div class="sub">Credited to setup if you sign within 14 days</div>
+<ul><li><svg><use href="#i-check"/></svg>30-minute call</li><li><svg><use href="#i-check"/></svg>1-page report: top 3 tasks to automate</li><li><svg><use href="#i-check"/></svg>Estimated hours saved</li><li><svg><use href="#i-check"/></svg>Recommended plan</li></ul>
+<a class="btn btn-g" href="https://wa.me/919041315226?text=Hi%2C%20I%27d%20like%20the%20Quavok%20Audit" target="_blank" rel="noopener">Book an audit</a></div>
+<div class="plan rv"><h3>Starter</h3><p class="muted">One workflow: an enquiry bot or bookings with reminders.</p>
+<div class="price" data-m="₹4,999" data-y="₹49,990">₹4,999<small data-m="/mo" data-y="/yr">/mo</small></div><div class="sub" data-m="+ ₹9,999 one-time setup" data-y="Setup fee waived">+ ₹9,999 one-time setup</div>
+<ul><li><svg><use href="#i-check"/></svg>500 AI conversations/mo</li><li><svg><use href="#i-check"/></svg>1 WhatsApp number, 1 location</li><li><svg><use href="#i-check"/></svg>Up to 3 staff calendars</li><li><svg><use href="#i-check"/></svg>Daily owner summary &amp; handover alerts</li><li><svg><use href="#i-check"/></svg>2 change requests/mo, 1-day support</li></ul>
+<a class="btn btn-g" href="https://wa.me/919041315226?text=Hi%2C%20I%27m%20interested%20in%20the%20Starter%20plan" target="_blank" rel="noopener">Get started</a></div>
+<div class="plan hot rv"><span class="tag">Most popular</span><h3>Growth</h3><p class="muted">Up to 3 workflows: FAQ, bookings and follow-ups.</p>
+<div class="price" data-m="₹9,999" data-y="₹99,990">₹9,999<small data-m="/mo" data-y="/yr">/mo</small></div><div class="sub" data-m="+ ₹14,999 one-time setup" data-y="Setup fee waived">+ ₹14,999 one-time setup</div>
+<ul><li><svg><use href="#i-check"/></svg>Everything in Starter</li><li><svg><use href="#i-check"/></svg>1,500 AI conversations/mo</li><li><svg><use href="#i-check"/></svg>Follow-ups: rebooking &amp; reviews</li><li><svg><use href="#i-check"/></svg>2 locations, 8 staff calendars</li><li><svg><use href="#i-check"/></svg>Google Sheet / CRM sync</li><li><svg><use href="#i-check"/></svg>Unlimited small changes, same-day support</li></ul>
+<a class="btn" href="https://wa.me/919041315226?text=Hi%2C%20I%27m%20interested%20in%20the%20Growth%20plan" target="_blank" rel="noopener">Get started</a></div>
+<div class="plan rv"><h3>Managed Ops</h3><p class="muted">Up to 6 workflows, including apps with no API.</p>
+<div class="price" data-m="₹19,999" data-y="₹1,99,990">₹19,999<small data-m="/mo" data-y="/yr">/mo</small></div><div class="sub" data-m="+ ₹24,999 one-time setup" data-y="Setup fee waived">+ ₹24,999 one-time setup</div>
+<ul><li><svg><use href="#i-check"/></svg>Everything in Growth</li><li><svg><use href="#i-check"/></svg>4,000 AI conversations/mo</li><li><svg><use href="#i-check"/></svg>Browser automation of 1–2 no-API apps</li><li><svg><use href="#i-check"/></svg>Up to 3 locations</li><li><svg><use href="#i-check"/></svg>Weekly review, 4-hour priority support</li></ul>
+<a class="btn btn-g" href="https://wa.me/919041315226?text=Hi%2C%20I%27m%20interested%20in%20Managed%20Ops" target="_blank" rel="noopener">Talk to us</a></div>
+</div>
+<p class="fine">Over your plan's limit? ₹2 per extra AI conversation, or upgrade anytime. Monthly plans cancel with 30 days' notice. You own your data.</p>
 </div></section>
 
-<div class="wrap"><footer><a href="pricing/">Pricing</a> · <a href="terms/">Terms</a> · <a href="privacy/">Privacy</a> · <a href="refund/">Refunds &amp; cancellation</a> · <a href="contact/">Contact</a><br>© 2026 Syntheight. AI automation for business owners. Our assistants are AI and say so when asked.</footer></div>
-<a class="float-wa" href="https://wa.me/919041315226?text=Hi%20Syntheight%2C%20I%27d%20like%20a%20free%20call">WhatsApp</a>
-</body></html>
+<section id="pilot"><div class="c"><div class="pilot rv">
+<div><span class="eyebrow">Pilot programme</span><h2 style="margin-top:14px">3 pilot spots at 50% off.</h2><p>We're taking on our first 3 businesses at half price so we can give each one close attention. In return we'll ask for honest feedback after 30 days, only if you're happy.</p>
+<div class="spots"><i></i><i></i><i></i><span>3 spots open</span></div>
+<div class="ctas" style="margin-top:28px"><a class="btn btn-wa" href="https://wa.me/919041315226?text=Hi%2C%20I%27d%20like%20one%20of%20the%20Quavok%20pilot%20spots" target="_blank" rel="noopener"><svg><use href="#i-msg"/></svg>Claim a pilot spot</a></div></div>
+<ul><li><svg><use href="#i-check"/></svg>Free audit and no setup fee</li><li><svg><use href="#i-check"/></svg>Starter at ₹2,499/mo or Growth at ₹4,999/mo for 3 months</li><li><svg><use href="#i-check"/></svg>Cancel anytime during the pilot</li><li><svg><use href="#i-check"/></svg>Feedback is optional and never scripted</li></ul>
+</div></div></section>
+
+<section class="alt" id="faq"><div class="c">
+<div class="sh ctr rv"><span class="eyebrow">FAQ</span><h2>Questions, answered.</h2></div>
+<div class="faq">
+<details><summary>Will customers know they're talking to an AI?<svg><use href="#i-plus"/></svg></summary><p>Yes, if they ask. The assistant never pretends to be a person. It says it's your AI assistant and offers to connect them to your team.</p></details>
+<details><summary>Do I need to change my WhatsApp number?<svg><use href="#i-plus"/></svg></summary><p>Usually not. Automated replies run on the WhatsApp Business Platform, and we help you set up your existing business number on it. If that isn't possible, we'll talk you through the options on the call.</p></details>
+<details><summary>What if the bot doesn't know an answer?<svg><use href="#i-plus"/></svg></summary><p>It tells the customer someone will get back to them and alerts you straight away. It won't make up prices or promises.</p></details>
+<details><summary>How long does setup take?<svg><use href="#i-plus"/></svg></summary><p>Most setups take about a week from the call to going live. Part of that is Meta's business verification, which we guide you through.</p></details>
+<details><summary>Which businesses is this for?<svg><use href="#i-plus"/></svg></summary><p>We're starting with salons and beauty studios. The same setup also suits clinics, coaching institutes, gyms and other appointment-based businesses.</p></details>
+<details><summary>What about my customers' data?<svg><use href="#i-plus"/></svg></summary><p>Each client gets their own separate assistant and data. We never ask for your passwords in chat, and you can ask us to export or delete your data at any time. See our <a href="privacy/" style="text-decoration:underline">Privacy Policy</a>.</p></details>
+<details><summary>Can I cancel?<svg><use href="#i-plus"/></svg></summary><p>Yes. Monthly plans cancel with 30 days' notice, and pilot plans can be cancelled anytime.</p></details>
+</div></div></section>
+
+<section id="contact"><div class="c"><div class="cta rv">
+<h2>Let's get your evenings back.</h2><p class="lead">Book a free 20-minute call on WhatsApp. We'll show you the demo and tell you honestly what's worth automating.</p>
+<div class="ctas"><a class="btn btn-wa" href="https://wa.me/919041315226?text=Hi%20Quavok%2C%20I%27d%20like%20to%20book%20a%20free%20call" target="_blank" rel="noopener"><svg><use href="#i-msg"/></svg>Chat on WhatsApp</a><a class="btn btn-g" href="demo/"><svg><use href="#i-play"/></svg>Try the live demo</a></div>
+<p style="margin-top:18px;color:var(--mute);font-size:14px">+91 90413 15226</p>
+</div></div></section>
+
+<footer><div class="c foot">
+<div><a href="./" class="logo"><span class="mk"><svg><use href="#i-logo"/></svg></span><span>qua<b>vok</b></span></a><p style="margin-top:12px;max-width:320px">AI assistants for WhatsApp, built and run for you.</p></div>
+<nav><a href="#pricing">Pricing</a><a href="demo/">Demo</a><a href="privacy/">Privacy</a><a href="terms/">Terms</a><a href="refund/">Refunds</a><a href="contact/">Contact</a><a href="https://wa.me/919041315226" target="_blank" rel="noopener">WhatsApp</a></nav>
+</div><div class="c" style="margin-top:30px;font-size:13px">© 2026 Quavok</div></footer>
+<script>
+const nav=document.getElementById('nav');addEventListener('scroll',()=>nav.classList.toggle('s',scrollY>8),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+document.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));const p=b.dataset.p;document.querySelectorAll('[data-'+p+']').forEach(el=>{if(el.classList.contains('price')){el.firstChild.textContent=el.dataset[p]}else el.textContent=el.dataset[p]})});
+</script></body></html>
