@@ -1,0 +1,112 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Client onboarding · Quavok</title><!--seo--><link rel="canonical" href="https://quavok.com/start/"><meta property="og:type" content="website"><meta property="og:site_name" content="Quavok"><meta property="og:url" content="https://quavok.com/start/"><meta property="og:title" content="Client onboarding · Quavok"><meta property="og:description" content="Onboarding form for Quavok clients: share your business details so we can set up your WhatsApp assistant."><meta property="og:image" content="https://quavok.com/assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#5b4cf0"><!--/seo--><meta name="description" content="Onboarding form for Quavok clients: share your business details so we can set up your WhatsApp assistant."><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235b4cf0'/%3E%3Ccircle cx='15' cy='15' r='7' fill='none' stroke='white' stroke-width='2.8'/%3E%3Cpath d='M20 20l5 5' stroke='white' stroke-width='2.8' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css"><style>
+.bk{max-width:1060px;margin:0 auto;padding:120px 22px 80px;display:grid;grid-template-columns:1fr 1.25fr;gap:48px;align-items:start}
+@media(max-width:860px){.bk{grid-template-columns:1fr;padding-top:100px;gap:28px}}
+.bk h1{font-size:clamp(34px,4.6vw,52px)}.bk .lead{margin-top:16px}
+.bk ul{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:12px}.bk li{display:flex;gap:10px;color:var(--ink2)}.bk li svg{width:20px;height:20px;color:var(--wa);flex:none;margin-top:3px}
+.fm{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh2);padding:28px}
+.fm h2{font-size:22px;margin-bottom:4px}.fm .muted{color:var(--mute);font-size:14px}
+.fm label{display:block;font-weight:600;font-size:14px;margin:18px 0 8px}
+.fm input,.fm select,.fm textarea{width:100%;font:inherit;font-size:15px;padding:11px 13px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.fm input:focus,.fm select:focus,.fm textarea:focus{outline:2px solid var(--brand2);outline-offset:1px;background:#fff}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:520px){.row2{grid-template-columns:1fr}}
+.days,.slots{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 12px;font:inherit;font-size:14px;cursor:pointer;color:var(--ink2);text-align:center;line-height:1.25}
+.chip small{display:block;color:var(--mute);font-size:12px}
+.chip:hover{border-color:var(--brand2)}.chip[aria-pressed=true]{background:var(--brand);border-color:var(--brand);color:#fff}.chip[aria-pressed=true] small{color:#e0dcff}
+.fm .btn{width:100%;justify-content:center;margin-top:24px}.err{color:#dc2626;font-size:14px;margin-top:10px;min-height:20px}
+.fm .fine{font-size:13px;color:var(--mute);margin-top:12px}
+
+@media(min-width:861px){.bk{grid-template-columns:1fr 1.6fr}}
+.fm fieldset{border:0;padding:0;margin:0 0 6px}.fm legend{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px;margin-top:26px;padding:0}
+.fm fieldset:first-of-type legend{margin-top:6px}.hint{font-weight:400;color:var(--mute)}
+.ck{display:flex!important;gap:10px;align-items:flex-start;font-weight:500!important}.fm .ck input{width:18px;height:18px;flex:none;margin-top:3px}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btns .btn{margin-top:14px}.btn-o{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.ok{color:#15803d;font-size:14px;min-height:20px;margin-top:8px}
+.bk ul.steps{counter-reset:s;grid-template-columns:1fr}.steps li{counter-increment:s}.steps li:before{content:counter(s);flex:none;width:24px;height:24px;border-radius:50%;background:var(--brand);color:#fff;font-size:13px;font-weight:600;display:grid;place-items:center;margin-top:1px}
+</style></head><body><svg width="0" height="0" style="position:absolute" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><defs>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-msg" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></symbol>
+<symbol id="i-calx" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M10 14l4 4M14 14l-4 4"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></symbol>
+<symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></symbol>
+<symbol id="i-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8M12 17v4M7 10l2 2-2 2M12 14h4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+<symbol id="i-logo" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m12.5 12.5 7 7"/></symbol>
+</defs></svg>
+<header class="nav s"><div class="c"><a href="../" class="logo"><span class="mk"><svg><use href="#i-logo"/></svg></span><span>qua<b>vok</b></span></a><nav><a href="../#pricing">Pricing</a><a href="../demo/">Demo</a><a href="../contact/">Contact</a><a href="../book/">Book a call</a></nav><a class="btn btn-p" href="https://wa.me/919041315226" target="_blank" rel="noopener">WhatsApp us</a></div></header>
+<main class="bk">
+<div><span class="eyebrow">For new clients</span><h1 style="margin-top:14px">Let's set up your assistant</h1>
+<p class="lead">Fill this in once, in about 10 minutes. Your assistant only answers from what you tell us here, so the more exact it is, the better it works.</p>
+<ul class="steps"><li>You send this form on WhatsApp</li><li>We set up and test the assistant with your details</li><li>You try it from your own phone and approve it</li><li>It goes live, usually within 5 working days of getting your details</li></ul>
+<p style="margin-top:22px;color:var(--mute);font-size:14px">Stuck on something? <a style="color:var(--brand);font-weight:600" href="https://wa.me/919041315226?text=Hi%20Quavok%2C%20I%20have%20a%20question%20about%20onboarding" target="_blank" rel="noopener">Ask us on WhatsApp</a>.</p></div>
+<form class="fm" id="f" novalidate>
+<fieldset><legend>1. Your business</legend>
+<div class="row2"><div><label for="bn">Business name</label><input id="bn" placeholder="" required></div><div><label for="on">Owner / contact name</label><input id="on" placeholder="" required></div></div>
+<div class="row2"><div><label for="ty">Type of business</label><select id="ty"><option>Salon / beauty studio</option><option>Clinic</option><option>Gym / fitness studio</option><option>Coaching / classes</option><option>Shop / retail</option><option>Other</option></select></div><div><label for="pl">Plan you chose</label><select id="pl"><option>Pilot</option><option>Starter</option><option>Growth</option><option>Managed Ops</option><option>Not decided yet</option></select></div></div>
+<label for="ad">Full address <span class=hint>(as customers should see it)</span></label><input id="ad" placeholder="">
+<div class="row2"><div><label for="mp">Google Maps link <span class=hint>(optional)</span></label><input id="mp" placeholder="https://maps.app.goo.gl/…"></div><div><label for="ig">Instagram / website <span class=hint>(optional)</span></label><input id="ig" placeholder=""></div></div>
+</fieldset>
+<fieldset><legend>2. Timings</legend>
+<div class="row2"><div><label for="hr">Opening hours</label><input id="hr" placeholder="e.g. 10 AM – 8 PM" required></div><div><label for="off">Weekly off</label><input id="off" placeholder="e.g. Tuesday"></div></div>
+<label for="hol">Holidays or special timings <span class=hint>(optional)</span></label><input id="hol" placeholder="e.g. closed on Diwali; open till 10 PM in wedding season">
+</fieldset>
+<fieldset><legend>3. Services and prices</legend>
+<label for="sv">Service menu with prices and time taken <span class=hint>(one per line, or paste your rate list)</span></label><textarea id="sv" rows="6" placeholder="Haircut (women) – ₹500 – 45 min&#10;Facial – ₹1,200 – 60 min&#10;Bridal makeup package – from ₹15,000" required></textarea>
+<label for="pk">Packages, offers or memberships <span class=hint>(optional)</span></label><textarea id="pk" rows="3" placeholder="Only offers you want the assistant to mention"></textarea>
+</fieldset>
+<fieldset><legend>4. Bookings</legend>
+<div class="row2"><div><label for="st">Staff / chairs available at once</label><input id="st" placeholder="e.g. 3 stylists"></div><div><label for="bw">How far ahead can people book?</label><input id="bw" placeholder="e.g. up to 14 days"></div></div>
+<label for="cx">Cancellation, rescheduling and advance payment rules</label><textarea id="cx" rows="3" placeholder="e.g. reschedule free up to 3 hours before; ₹1,000 advance for bridal"></textarea>
+<label for="pm">Payment modes you accept</label><input id="pm" placeholder="e.g. cash, UPI, cards">
+</fieldset>
+<fieldset><legend>5. Common questions</legend>
+<label for="fq">Questions customers often ask, with your answers <span class=hint>(up to 15)</span></label><textarea id="fq" rows="6" placeholder="Parking? – Free parking in front&#10;Walk-ins? – Yes, but booking is faster&#10;Home service? – Only for bridal"></textarea>
+</fieldset>
+<fieldset><legend>6. How the assistant should talk and hand over</legend>
+<div class="row2"><div><label for="lg">Language</label><select id="lg"><option>Hinglish</option><option>Hindi</option><option>Punjabi</option><option>English</option><option>Match the customer</option></select></div><div><label for="em">Emojis</label><select id="em"><option>A few are fine</option><option>None</option></select></div></div>
+<div class="row2"><div><label for="hn">WhatsApp number for handover to you</label><input id="hn" placeholder="+91 …" required></div><div><label for="qh">Quiet hours (don't disturb you)</label><input id="qh" placeholder="e.g. 10 PM – 8 AM"></div></div>
+<div class="row2"><div><label for="ds">Daily summary time</label><input id="ds" placeholder="9 PM"></div><div><label for="ws">WhatsApp number customers message today <span class=hint>(if different)</span></label><input id="ws" placeholder="+91 …"></div></div>
+<label for="nt">Anything else we should know? <span class=hint>(optional)</span></label><textarea id="nt" rows="3" placeholder=""></textarea>
+</fieldset>
+<label class="ck"><input type="checkbox" id="cn"> I agree that Quavok may process my customers' WhatsApp chats only to run my assistant, as set out in the <a href="../privacy/" style="text-decoration:underline">privacy policy</a>. I won't be asked for passwords, OTPs or card details.</label>
+<div class="err" id="e" role="alert"></div>
+<button class="btn btn-wa" type="submit"><svg><use href="#i-msg"/></svg>Send on WhatsApp</button>
+<div class="btns"><button class="btn btn-o" type="button" id="cp">Copy all details</button><button class="btn btn-o" type="button" id="dl">Download as file</button></div>
+<div class="ok" id="ok" role="status"></div>
+<p class="fine">Your answers stay on this page until you send them. Long rate lists can be sent as a photo or PDF on WhatsApp instead.</p>
+</form></main>
+<script>
+(function(){var WA="919041315226",d=document,F=d.getElementById("f"),K="qv-start";
+var L={bn:"Business",on:"Contact",ty:"Type",pl:"Plan",ad:"Address",mp:"Maps",ig:"Instagram/website",hr:"Hours",off:"Weekly off",hol:"Holidays",sv:"Services & prices",pk:"Packages/offers",st:"Staff/chairs",bw:"Booking window",cx:"Cancellation/advance rules",pm:"Payment modes",fq:"FAQs",lg:"Language",em:"Emojis",hn:"Handover number",qh:"Quiet hours",ds:"Daily summary",ws:"Customer WhatsApp number",nt:"Notes"};
+var ids=Object.keys(L);
+try{var sv=JSON.parse(localStorage.getItem(K)||"{}");ids.forEach(function(i){if(sv[i])d.getElementById(i).value=sv[i]})}catch(x){}
+F.addEventListener("input",function(){var o={};ids.forEach(function(i){o[i]=d.getElementById(i).value});try{localStorage.setItem(K,JSON.stringify(o))}catch(x){}});
+function v(i){return d.getElementById(i).value.trim()}
+function text(){var t="Hi Quavok, here are my onboarding details.\n";ids.forEach(function(i){var x=v(i);if(x)t+=(x.indexOf("\n")>-1?"\n*"+L[i]+":*\n"+x+"\n":"\n*"+L[i]+":* "+x)});return t+"\n\nConsent to process chats: yes"}
+function check(){var e=d.getElementById("e");var miss=["bn","on","hr","sv","hn"].filter(function(i){return !v(i)});
+if(miss.length){e.textContent="Please fill in: "+miss.map(function(i){return L[i]}).join(", ")+".";d.getElementById(miss[0]).focus();return false}
+if(!d.getElementById("cn").checked){e.textContent="Please tick the consent box.";return false}e.textContent="";return true}
+F.onsubmit=function(ev){ev.preventDefault();if(!check())return;var t=text(),u="https://wa.me/"+WA+"?text="+encodeURIComponent(t);
+if(u.length>6000){d.getElementById("ok").textContent="Your details are long, so we copied them instead. Open WhatsApp and paste them in.";cp(t);u="https://wa.me/"+WA}
+window.open(u,"_blank","noopener")};
+function cp(t){(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){d.getElementById("ok").textContent="Copied. Paste it into WhatsApp to +91 90413 15226."},function(){d.getElementById("ok").textContent="Couldn't copy here. Please use Download instead."})}
+d.getElementById("cp").onclick=function(){if(check())cp(text())};
+d.getElementById("dl").onclick=function(){if(!check())return;var a=d.createElement("a");a.href=URL.createObjectURL(new Blob([text().replace(/\*/g,"")],{type:"text/plain"}));a.download="quavok-onboarding-"+(v("bn").replace(/[^a-z0-9]+/gi,"-").toLowerCase()||"details")+".txt";a.click();d.getElementById("ok").textContent="Downloaded. Send the file to us on WhatsApp."};
+})();
+</script>
+<footer><div class="c foot"><div><a href="../" class="logo"><span class="mk"><svg><use href="#i-logo"/></svg></span><span>qua<b>vok</b></span></a><p style="margin-top:12px">AI assistants for WhatsApp, built and run for you. Our assistants are AI and say so when asked.</p></div>
+<nav><a href="../pricing/">Pricing</a><a href="../terms/">Terms</a><a href="../privacy/">Privacy</a><a href="../refund/">Refunds</a><a href="../pay/">Pay</a><a href="../contact/">Contact</a></nav></div><div class="c" style="margin-top:30px;font-size:13px">© 2026 Quavok</div></footer></body></html>
