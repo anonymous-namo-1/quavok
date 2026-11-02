@@ -1,0 +1,91 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Book a free call · Quavok</title><meta name="description" content="Pick a time for a free 20-minute call with Quavok about automating WhatsApp enquiries, bookings and follow-ups.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235b4cf0'/%3E%3Ccircle cx='15' cy='15' r='7' fill='none' stroke='white' stroke-width='2.8'/%3E%3Cpath d='M20 20l5 5' stroke='white' stroke-width='2.8' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css"><style>
+.bk{max-width:1060px;margin:0 auto;padding:120px 22px 80px;display:grid;grid-template-columns:1fr 1.25fr;gap:48px;align-items:start}
+@media(max-width:860px){.bk{grid-template-columns:1fr;padding-top:100px;gap:28px}}
+.bk h1{font-size:clamp(34px,4.6vw,52px)}.bk .lead{margin-top:16px}
+.bk ul{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:12px}.bk li{display:flex;gap:10px;color:var(--ink2)}.bk li svg{width:20px;height:20px;color:var(--wa);flex:none;margin-top:3px}
+.fm{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh2);padding:28px}
+.fm h2{font-size:22px;margin-bottom:4px}.fm .muted{color:var(--mute);font-size:14px}
+.fm label{display:block;font-weight:600;font-size:14px;margin:18px 0 8px}
+.fm input,.fm select,.fm textarea{width:100%;font:inherit;font-size:15px;padding:11px 13px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.fm input:focus,.fm select:focus,.fm textarea:focus{outline:2px solid var(--brand2);outline-offset:1px;background:#fff}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:520px){.row2{grid-template-columns:1fr}}
+.days,.slots{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 12px;font:inherit;font-size:14px;cursor:pointer;color:var(--ink2);text-align:center;line-height:1.25}
+.chip small{display:block;color:var(--mute);font-size:12px}
+.chip:hover{border-color:var(--brand2)}.chip[aria-pressed=true]{background:var(--brand);border-color:var(--brand);color:#fff}.chip[aria-pressed=true] small{color:#e0dcff}
+.fm .btn{width:100%;justify-content:center;margin-top:24px}.err{color:#dc2626;font-size:14px;margin-top:10px;min-height:20px}
+.fm .fine{font-size:13px;color:var(--mute);margin-top:12px}
+</style></head><body><svg width="0" height="0" style="position:absolute" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><defs>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-msg" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></symbol>
+<symbol id="i-calx" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M10 14l4 4M14 14l-4 4"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></symbol>
+<symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></symbol>
+<symbol id="i-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8M12 17v4M7 10l2 2-2 2M12 14h4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+<symbol id="i-logo" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m12.5 12.5 7 7"/></symbol>
+</defs></svg>
+
+<header class="nav s"><div class="c"><a href="../" class="logo"><span class="mk"><svg><use href="#i-logo"/></svg></span><span>qua<b>vok</b></span></a><nav><a href="../#pricing">Pricing</a><a href="../demo/">Demo</a><a href="../contact/">Contact</a><a href="../book/">Book a call</a></nav><a class="btn btn-p" href="https://wa.me/919041315226" target="_blank" rel="noopener">WhatsApp us</a></div></header>
+<main class="bk">
+<div><span class="eyebrow">Free · 20 minutes</span><h1 style="margin-top:14px">Book a free call</h1>
+<p class="lead">Pick a time that suits you. We'll look at how enquiries, bookings and follow-ups work in your business today, and show you what an assistant could take off your hands.</p>
+<ul><li><svg><use href="#i-check"/></svg>A short call or WhatsApp video call, in Hindi, Punjabi or English</li>
+<li><svg><use href="#i-check"/></svg>A live walkthrough of the demo assistant</li>
+<li><svg><use href="#i-check"/></svg>An honest view of what's worth automating first, and what isn't</li>
+<li><svg><use href="#i-check"/></svg>No payment and no obligation</li></ul>
+<p style="margin-top:22px;color:var(--mute);font-size:14px">Prefer to just chat? <a style="color:var(--brand);font-weight:600" href="https://wa.me/919041315226?text=Hi%20Quavok%2C%20I%27d%20like%20to%20book%20a%20free%20call" target="_blank" rel="noopener">Message us on WhatsApp</a>.</p></div>
+<form class="fm" id="f" novalidate>
+<h2>Choose a time</h2><p class="muted">All times are India time (IST). Monday to Saturday.</p>
+<label>Day</label><div class="days" id="days"></div>
+<label>Time</label><div class="slots" id="slots"></div>
+<div class="row2"><div><label for="n">Your name</label><input id="n" autocomplete="name" required></div>
+<div><label for="b">Business name</label><input id="b" autocomplete="organization" required></div></div>
+<div class="row2"><div><label for="t">Type of business</label><select id="t"><option>Salon / beauty studio</option><option>Clinic</option><option>Gym / fitness studio</option><option>Coaching / classes</option><option>Shop / retail</option><option>Other</option></select></div>
+<div><label for="ci">City</label><input id="ci" autocomplete="address-level2"></div></div>
+<label for="m">What would you like help with? <span style="font-weight:400;color:var(--mute)">(optional)</span></label>
+<textarea id="m" rows="3" placeholder="e.g. Too many WhatsApp enquiries in the evening, missed bookings"></textarea>
+<div class="err" id="e" role="alert"></div>
+<button class="btn btn-wa" type="submit"><svg><use href="#i-msg"/></svg>Confirm on WhatsApp</button>
+<p class="fine">This opens WhatsApp with your request filled in. Press send and we'll confirm your slot, usually within a few working hours. We use your details only to arrange the call (see our <a href="../privacy/" style="text-decoration:underline">privacy policy</a>).</p>
+</form></main>
+<script>
+(function(){
+var WA="919041315226",SL=["10:00","10:30","11:00","11:30","12:00","12:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30","18:00","18:30"];
+var d=document,days=d.getElementById("days"),slots=d.getElementById("slots"),sel={day:null,slot:null};
+function ist(){var n=new Date();return new Date(n.getTime()+n.getTimezoneOffset()*6e4+330*6e4)}
+var now=ist(),list=[],c=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+var lastStart=18*60+30, nowMin=now.getHours()*60+now.getMinutes();
+if(nowMin>lastStart-120)c.setDate(c.getDate()+1);
+while(list.length<6){if(c.getDay()!==0)list.push(new Date(c));c.setDate(c.getDate()+1)}
+var W=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function lab(x){return W[x.getDay()]+", "+x.getDate()+" "+M[x.getMonth()]}
+function chip(p,txt,sub,on){var b=d.createElement("button");b.type="button";b.className="chip";b.setAttribute("aria-pressed","false");b.innerHTML=txt+(sub?"<small>"+sub+"</small>":"");b.onclick=function(){[].forEach.call(p.children,function(k){k.setAttribute("aria-pressed","false")});b.setAttribute("aria-pressed","true");on()};p.appendChild(b);return b}
+function h12(s){var h=+s.slice(0,2),m=s.slice(3);return (h%12||12)+":"+m+(h<12?" AM":" PM")}
+function draw(day){slots.innerHTML="";sel.slot=null;var today=day.toDateString()===new Date(now.getFullYear(),now.getMonth(),now.getDate()).toDateString();
+SL.forEach(function(s){var mm=+s.slice(0,2)*60+ +s.slice(3);if(today&&mm<nowMin+120)return;chip(slots,h12(s),"",function(){sel.slot=s})});}
+list.forEach(function(x,i){var b=chip(days,W[x.getDay()],x.getDate()+" "+M[x.getMonth()],function(){sel.day=x;draw(x)});if(i===0){b.click()}});
+d.getElementById("f").onsubmit=function(ev){ev.preventDefault();var e=d.getElementById("e"),v=function(i){return d.getElementById(i).value.trim()};
+if(!sel.day||!sel.slot){e.textContent="Please pick a day and a time.";return}
+if(!v("n")||!v("b")){e.textContent="Please add your name and business name.";return}
+e.textContent="";
+var msg="Hi Quavok, I'd like to book a free call.\n\nTime: "+lab(sel.day)+", "+h12(sel.slot)+" IST\nName: "+v("n")+"\nBusiness: "+v("b")+" ("+v("t")+(v("ci")?", "+v("ci"):"")+")"+(v("m")?"\nHelp with: "+v("m"):"");
+window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(msg),"_blank","noopener")};
+})();
+</script>
+<footer><div class="c foot"><div><a href="../" class="logo"><span class="mk"><svg><use href="#i-logo"/></svg></span><span>qua<b>vok</b></span></a><p style="margin-top:12px">AI assistants for WhatsApp, built and run for you. Our assistants are AI and say so when asked.</p></div>
+<nav><a href="../pricing/">Pricing</a><a href="../terms/">Terms</a><a href="../privacy/">Privacy</a><a href="../refund/">Refunds</a><a href="../contact/">Contact</a></nav></div><div class="c" style="margin-top:30px;font-size:13px">© 2026 Quavok</div></footer></body></html>
