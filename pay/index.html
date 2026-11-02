@@ -29,7 +29,7 @@
 <div id="paylinks"></div>
 <div id="paynone"><h2>How payment works right now</h2>
 <p>Our online card and UPI checkout is being set up. Until it's live, message us on WhatsApp with your business name and the plan you chose. We'll send your invoice and a payment request. We never ask for your card number, CVV, OTP or UPI PIN on WhatsApp or by phone.</p>
-<p><a class="btn btn-wa" href="https://wa.me/919041315226?text=Hi%20Quavok%2C%20I%27d%20like%20to%20pay%20for%20my%20plan.%20Business%3A%20" target="_blank" rel="noopener"><svg><use href="#i-msg"/></svg>Ask for a payment link</a></p></div>
+<p><a class="btn btn-wa" style="color:#fff;text-decoration:none" href="https://wa.me/919041315226?text=Hi%20Quavok%2C%20I%27d%20like%20to%20pay%20for%20my%20plan.%20Business%3A%20" target="_blank" rel="noopener"><svg><use href="#i-msg"/></svg>Ask for a payment link</a></p></div>
 <h2>Before you pay</h2><p>Read our <a href="../terms/">terms</a> and <a href="../refund/">refund and cancellation policy</a>. Questions about a payment: see our <a href="../contact/">contact page</a>.</p>
 <script>
 /* Owner/SYNTH8: paste Razorpay (or other gateway) payment-page URLs here once the account is live. Empty = hidden. */
@@ -47,7 +47,7 @@ if (live.length) {
   document.getElementById('paynone').style.display = 'none';
   const box = document.getElementById('paylinks');
   box.innerHTML = '<h2>Choose what you are paying for</h2>' + live.map(([k,v]) =>
-    '<p><a class="btn btn-p" href="'+v+'" target="_blank" rel="noopener">'+k.replace(/</g,'&lt;')+'</a></p>').join('') +
+    '<p><a class="btn btn-p" style="color:#fff;text-decoration:none" href="'+v+'" target="_blank" rel="noopener">'+k.replace(/</g,'&lt;')+'</a></p>').join('') +
     '<p>Payments are processed securely by our payment partner. We never see or store your card or bank details.</p>';
 }
 </script>
