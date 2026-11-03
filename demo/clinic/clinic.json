@@ -1,0 +1,14 @@
+{
+  "name": "Demo Dental Clinic (example)",
+  "address": "SCO 21, Sector 00, Example City (fictional)",
+  "maps": "https://maps.google.com/?q=Example+City",
+  "hours": "Mon–Sat, 10:00 AM – 2:00 PM and 5:00 PM – 8:00 PM (Sunday closed)",
+  "slots": ["10:30 AM","11:30 AM","12:30 PM","5:30 PM","6:30 PM","7:30 PM"],
+  "services": [
+    {"name":"Consultation (first visit)","price":300,"mins":20},
+    {"name":"Cleaning & Polishing","price":1200,"mins":40},
+    {"name":"Follow-up visit","price":200,"mins":15},
+    {"name":"Teeth Whitening consult","price":500,"mins":30},
+    {"name":"Kids dental checkup","price":300,"mins":20}
+  ]
+}

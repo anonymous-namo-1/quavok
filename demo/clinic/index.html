@@ -1,0 +1,58 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live demo – AI clinic front desk | Quavok</title><!--seo--><link rel="canonical" href="https://quavok.com/demo/clinic/"><meta property="og:type" content="website"><meta property="og:site_name" content="Quavok"><meta property="og:url" content="https://quavok.com/demo/clinic/"><meta property="og:title" content="Live demo – AI clinic front desk | Quavok"><meta property="og:description" content="Quavok sets up AI assistants on WhatsApp that answer, book and follow up for your business."><meta property="og:image" content="https://quavok.com/assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#5b4cf0"><!--/seo--><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235b4cf0'/%3E%3Ccircle cx='15' cy='15' r='7' fill='none' stroke='white' stroke-width='2.8'/%3E%3Cpath d='M20 20l5 5' stroke='white' stroke-width='2.8' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:radial-gradient(600px 400px at 20% 0%,rgba(124,108,255,.18),transparent 70%),radial-gradient(500px 400px at 90% 100%,rgba(34,197,94,.14),transparent 70%),#f3f4f8;color:#0b1220;-webkit-font-smoothing:antialiased}
+.wrap{max-width:460px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;background:#efeae2 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='2' cy='2' r='1' fill='%23d9d2c5'/%3E%3C/svg%3E");box-shadow:0 30px 60px -20px rgba(30,27,75,.25)}
+@media(min-width:600px){body:not(.embed) .wrap{height:calc(100dvh - 48px);margin:24px auto;border-radius:28px;overflow:hidden;border:8px solid #0b1220}}
+body.embed{background:none}body.embed .wrap{max-width:none;box-shadow:none}body.embed .top{padding-top:28px}body.embed .top a{display:none}
+.top{background:#075e54;color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:15px}
+.av{width:38px;height:38px;border-radius:50%;background:#f0b84f;display:grid;place-items:center;font-weight:700;color:#3b2a6b;font-size:14px}
+.top small{display:block;opacity:.8;font-size:12px}.top a{margin-left:auto;color:#fff;font-size:12.5px;background:rgba(255,255,255,.14);padding:6px 10px;border-radius:99px;text-decoration:none}
+.note{background:#fff8e1;font-size:11.5px;padding:6px 12px;text-align:center;color:#7a5b00}
+#log{flex:1;overflow-y:auto;padding:12px 10px}
+.m{max-width:84%;padding:7px 10px;border-radius:9px;margin:5px 0;white-space:pre-wrap;line-height:1.4;font-size:14px;box-shadow:0 1px .5px rgba(0,0,0,.13);animation:pop .3s ease}
+@media(prefers-reduced-motion:reduce){.m{animation:none}}@keyframes pop{from{opacity:0;transform:translateY(6px)}}
+.b{background:#fff;border-top-left-radius:2px}.u{background:#d9fdd3;margin-left:auto;border-top-right-radius:2px}
+.sys{background:#f0fdf4;border-left:3px solid #16a34a;max-width:100%;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 8px}.chips button{border:0;background:#fff;color:#00806a;border-radius:99px;padding:7px 12px;font:500 13px Inter,sans-serif;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.12);transition:transform .15s}.chips button:hover{transform:translateY(-1px)}
+form{display:flex;gap:6px;padding:8px;background:#f0f2f5}
+input{flex:1;padding:11px 14px;border:0;border-radius:22px;font:15px Inter,sans-serif;outline:none}form button{background:#00a884;color:#fff;border:0;border-radius:50%;width:42px;height:42px;font-size:0;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m22 2-7 20-4-9-9-4Z'/%3E%3Cpath d='M22 2 11 13'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:18px}
+</style></head><body><script>if(location.search.includes("embed"))document.body.classList.add("embed")</script><div class="wrap">
+<div class="top"><div class="av">DC</div><div><b>Demo Dental Clinic (example)</b><small>AI front-desk assistant · replies instantly</small></div><a href="../../clinics/">← Quavok</a></div>
+<div class="note">Demo with a fictional clinic. Fees are examples. Front desk only, no medical advice. Try: "fees", "timings", "tooth pain", "book"</div>
+<div id="log"></div>
+<form id="f"><input id="i" placeholder="Type a message…" autocomplete="off"><button>Send</button></form>
+</div>
+<script>
+let S,st={step:null,b:{}};const log=document.getElementById('log');
+const rs=n=>'₹'+n.toLocaleString('en-IN');
+function add(t,c='b'){const d=document.createElement('div');d.className='m '+c;d.textContent=t;log.appendChild(d);log.scrollTop=1e9}
+function chips(a){const d=document.createElement('div');d.className='chips';a.forEach(x=>{const b=document.createElement('button');b.type='button';b.textContent=x;b.onclick=()=>{d.remove();send(x)};d.appendChild(b)});log.appendChild(d);log.scrollTop=1e9}
+function bot(t,c,cls){setTimeout(()=>{add(t,cls||'b');if(c)chips(c)},450)}
+const menu=['Consultation fees','Timings','Location','Book appointment','Talk to clinic team'];
+function days(){const o=[],f={weekday:'short',day:'numeric',month:'short'};let d=new Date();while(o.length<5){d.setDate(d.getDate()+1);if(d.getDay()!==0)o.push(d.toLocaleDateString('en-IN',f))}return o}
+function send(t){t=t.trim();if(!t)return;add(t,'u');reply(t)}
+function reply(t){const q=t.toLowerCase(),b=st.b;
+ if(/emergenc|bleeding|accident|swelling|faint|unconscious|can'?t breathe|severe/.test(q)){st.step=null;return bot("⚠️ This sounds urgent. Please call the clinic now on the number on our page, or go to the nearest hospital emergency. If it's life-threatening, call 112.\nI've also alerted the clinic team.",menu)}
+ if(/human|doctor|team|staff|call me|baat|receptionist/.test(q)&&!/book/.test(q)){st.step=null;return bot("Sure! I've passed your message to the clinic team, someone will call or message you shortly. 🙏\n(In a real setup the front desk gets an instant alert here.)",menu)}
+ if(/are you (a )?(bot|ai|human|real)|robot/.test(q))return bot("I'm the clinic's AI front-desk assistant 🤖. I can share fees and timings and book appointments. I don't give medical advice, the doctor does. Type \"talk to clinic team\" anytime.",menu);
+ if(/pain|dard|medicine|tablet|dose|treatment for|should i|is it normal|infection|sensitiv|cavity|symptom/.test(q)&&st.step===null)return bot("I'm sorry you're uncomfortable. I can't give medical advice, but the doctor can see you. Would you like the earliest appointment, or should the clinic team call you?\nIf it's severe or there's heavy swelling or bleeding, please call the clinic or visit emergency.",['Book appointment','Talk to clinic team']);
+ if(st.step==='svc'){const s=S.services.find(x=>x.name.toLowerCase()===q)||S.services.find(x=>q.includes(x.name.toLowerCase().split(' ')[0]));if(!s)return bot("Please pick a visit type:",S.services.map(x=>x.name));b.s=s;st.step='date';return bot(`${s.name}, fee ${rs(s.price)} (~${s.mins} min). Which day?`,days())}
+ if(st.step==='date'){b.d=t;st.step='time';return bot(`Available slots on ${t}:`,S.slots)}
+ if(st.step==='time'){if(!S.slots.includes(t.toUpperCase().replace(/\s+/g,' ').replace(/(\d)(AM|PM)/,'$1 $2'))&&!S.slots.includes(t))return bot("Please choose one of the slots:",S.slots);b.t=t;st.step='name';return bot("Great! Patient's name for the appointment?")}
+ if(st.step==='name'){b.n=t;st.step=null;const id='DC'+Math.floor(1000+Math.random()*9000);
+  bot(`✅ Appointment booked!\n${b.n}, ${b.s.name}\n📅 ${b.d}, ${b.t}\n💰 Fee ${rs(b.s.price)} (pay at clinic)\n📍 ${S.address}\nRef: ${id}\nPlease bring any old reports or X-rays. Reply "reschedule" anytime to change.`);
+  setTimeout(()=>add(`⏰ Sample reminder (sent automatically the day before):\n"Hi ${b.n}! Reminder: ${b.s.name} tomorrow at ${b.t} at Demo Dental Clinic. Reply 1 to confirm, 2 to reschedule."`,'m sys'),1300);
+  setTimeout(()=>{add(`📊 Sample 9 PM clinic summary (sent to the clinic daily):\nEnquiries today: 18 · Answered: 18\nNew appointments: 6 (incl. ${b.n}, ${b.s.name}, ${b.d} ${b.t})\nHanded to team: 3 (2 medical questions, 1 urgent call)\nTomorrow: 9 appointments, reminders sent ✅\n(Sample numbers for illustration)`,'m sys');chips(['Start again'])},2300);return}
+ if(/book|appoint|slot|reschedul|checkup|check-up/.test(q)){st.step='svc';st.b={};return bot("Let's book! Which visit type?",S.services.map(x=>x.name))}
+ if(/fee|price|rate|cost|charge|kitna|cleaning|scaling|whitening|consult/.test(q))return bot("🦷 Fees (final cost for treatment is decided by the doctor after checkup):\n"+S.services.map(x=>`• ${x.name} – ${rs(x.price)}`).join('\n'),['Book appointment','Timings']);
+ if(/time|timing|open|close|hours|kab|sunday/.test(q))return bot("🕙 "+S.hours,['Book appointment','Location']);
+ if(/where|location|address|kahan|map|direction|parking/.test(q))return bot("📍 "+S.address+"\nMap: "+S.maps,['Book appointment','Timings']);
+ if(/^(hi|hello|hey|namaste|start)/.test(q))return bot(`Namaste! 👋 Welcome to ${S.name}. How can I help?`,menu);
+ bot("I can help with fees, timings, location or booking an appointment. For anything else, type \"talk to clinic team\" and they'll reply.",menu)}
+document.getElementById('f').onsubmit=e=>{e.preventDefault();const i=document.getElementById('i');send(i.value);i.value=''};
+fetch('clinic.json').then(r=>r.json()).then(j=>{S=j;add(`Namaste! 👋 Welcome to ${S.name}. I'm the clinic's AI front-desk assistant. I can share fees and timings and book appointments.`);chips(menu)});
+</script></body></html>
