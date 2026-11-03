@@ -1,0 +1,130 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quavok for clinics · A WhatsApp front desk for dental, skin and physio clinics</title><!--seo--><link rel="canonical" href="https://quavok.com/clinics/"><meta property="og:type" content="website"><meta property="og:site_name" content="Quavok"><meta property="og:url" content="https://quavok.com/clinics/"><meta property="og:title" content="Quavok for clinics · A WhatsApp front desk for dental, skin and physio clinics"><meta property="og:description" content="Quavok sets up an AI front desk on your clinic&#x27;s WhatsApp: answers timings, fees and location questions, books and reschedules appointments, sends reminders. It never gives medical advice."><meta property="og:image" content="https://quavok.com/assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#5b4cf0"><!--/seo-->
+<meta name="description" content="Quavok sets up an AI front desk on your clinic's WhatsApp: answers timings, fees and location questions, books and reschedules appointments, sends reminders. It never gives medical advice.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235b4cf0'/%3E%3Ccircle cx='15' cy='15' r='7' fill='none' stroke='white' stroke-width='2.8'/%3E%3Cpath d='M20 20l5 5' stroke='white' stroke-width='2.8' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css"></head><body><svg width="0" height="0" style="position:absolute" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><defs>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-msg" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></symbol>
+<symbol id="i-calx" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M10 14l4 4M14 14l-4 4"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></symbol>
+<symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></symbol>
+<symbol id="i-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8M12 17v4M7 10l2 2-2 2M12 14h4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+<symbol id="i-logo" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m12.5 12.5 7 7"/></symbol>
+</defs></svg>
+
+<header class="nav" id="nav"><div class="c">
+<a href="../" class="logo"><span class="mk"><svg><use href="#i-logo"/></svg></span><span>qua<b>vok</b></span></a>
+<nav><a href="#problem">Why</a><a href="#automate">What it does</a><a href="#safety">Safety</a><a href="../#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+<a class="btn btn-p" href="../book/">Book a free call</a>
+</div></header>
+
+<section class="hero"><div class="c">
+<div>
+<span class="eyebrow"><svg width="14" height="14"><use href="#i-shield"/></svg> For dental, skin &amp; physio clinics</span>
+<h1 style="margin-top:22px">A front desk on WhatsApp that <span class="g">never closes</span>.</h1>
+<p class="lead">Patients message after hours, during procedures and on Sundays. Quavok answers the routine questions, books and reschedules appointments and sends reminders, then hands anything medical straight to your team.</p>
+<div class="ctas"><a class="btn btn-wa" href="../book/"><svg><use href="#i-msg"/></svg>Book a free call</a><a class="btn btn-g" href="../demo/"><svg><use href="#i-play"/></svg>Try the live demo</a></div>
+<div class="ticks"><span><svg><use href="#i-check"/></svg>No medical advice, ever</span><span><svg><use href="#i-check"/></svg>English &amp; Hinglish</span><span><svg><use href="#i-check"/></svg>Your team takes over anytime</span></div>
+</div>
+<div class="stage">
+<div class="phone"><div class="scr">
+<div class="wah"><div class="av">SD</div><div><b>Smile Dental Care</b><small>AI assistant · online</small></div></div>
+<div class="wab">
+<div class="bb out">Hi, kal cleaning ke liye appointment mil jayega? Fees kitni hai? <i>9:18 pm</i></div>
+<div class="bb in">Namaste! 🙂 Consultation ₹500 hai, cleaning ki final fees doctor check-up ke baad batayenge. Kal 11:30 AM aur 5 PM free hain. Kaunsa time theek rahega? <i>9:18 pm</i></div>
+<div class="bb out">5 PM, naam Rohit <i>9:19 pm</i></div>
+<div class="bb in bk">✅ <b>Booked</b> · Rohit<br>Consultation · Tomorrow, 5:00 PM<br>Reminder will come in the morning. <i>9:19 pm</i></div>
+<div class="bb out">Daant mein kaafi dard hai, kya lu? <i>9:20 pm</i></div>
+<div class="bb in">Main medical advice nahi de sakta. Maine doctor ki team ko abhi alert kar diya hai. Agar dard bahut zyada hai ya sujan hai, please turant nearest emergency se contact karein. 🙏 <i>9:20 pm</i></div>
+</div>
+<div class="waf"><div>Message</div><span><svg><use href="#i-send"/></svg></span></div>
+</div></div>
+<div class="float f1"><span class="ico gr" style="margin:0"><svg><use href="#i-cal"/></svg></span><div><b>New appointment</b><small>Added to calendar</small></div></div>
+<div class="float f2"><span class="ico" style="margin:0"><svg><use href="#i-shield"/></svg></span><div><b>Handed to doctor's team</b><small>Medical question</small></div></div>
+</div>
+</div><p class="c" style="font-size:12px;color:var(--mute);margin-top:26px">Illustration: a sample conversation with a fictional clinic. Fees and timings come from your clinic, never made up by the assistant.</p></section>
+
+<section class="alt" id="problem"><div class="c">
+<div class="sh rv"><span class="eyebrow">The problem</span><h2>Your reception can't answer while the chair is busy.</h2><p>Messages pile up during procedures and after closing time. Patients who don't hear back often book elsewhere, or simply don't turn up.</p></div>
+<div class="grid3">
+<div class="card rv"><div class="ico y"><svg><use href="#i-moon"/></svg></div><h3>After-hours enquiries</h3><p>Many patients message in the evening or on Sunday, when nobody is at the desk to reply.</p></div>
+<div class="card rv"><div class="ico a"><svg><use href="#i-calx"/></svg></div><h3>Missed appointments</h3><p>Reminder calls take staff time, so they get skipped on busy days, and empty slots follow.</p></div>
+<div class="card rv"><div class="ico r"><svg><use href="#i-clock"/></svg></div><h3>The same questions all day</h3><p>Timings, consultation fees, location, parking, "Sunday open hai?". Your front desk answers them again and again.</p></div>
+</div>
+<div class="qs rv"><span>"Doctor kab baithte hain?"</span><span>"Consultation fees?"</span><span>"Kal ka slot milega?"</span><span>"Location bhejo"</span><span>"Appointment shift kar do"</span><span>"Sunday open hai?"</span></div>
+</div></section>
+
+<section id="automate"><div class="c">
+<div class="sh rv"><span class="eyebrow">What it does</span><h2>Front-desk work only. Clinical decisions stay with you.</h2><p>We set it up with your doctors' timings, fees and rules, and test it with you on WhatsApp before it goes live.</p></div>
+<div class="bento">
+<div class="card rv"><div class="ico"><svg><use href="#i-bot"/></svg></div><h3>Answers routine questions</h3><p>Timings, which doctor is in on which day, consultation fees you've approved, location and directions, what to bring.</p>
+<div class="mini"><div class="bb out">Dr Sharma Saturday ko hain?</div><div class="bb in">Haan, Saturday 10 AM se 2 PM tak. Appointment book karein? 🙂</div></div></div>
+<div class="card rv"><div class="ico gr"><svg><use href="#i-cal"/></svg></div><h3>Appointments &amp; reminders</h3><p>Books, reschedules and cancels within your rules, then sends a reminder before the visit. Patients confirm with one reply.</p>
+<div class="mini"><div class="bb in">⏰ Reminder: Physio session tomorrow at 6 PM. Reply 1 to confirm, 2 to reschedule.</div><div class="bb out">1</div></div></div>
+<div class="card rv"><div class="ico b"><svg><use href="#i-send"/></svg></div><h3>Follow-up visits</h3><p>Nudges for the next session or check-up date your doctor has set, so treatment plans don't drop off.</p></div>
+<div class="card rv"><div class="ico a"><svg><use href="#i-chart"/></svg></div><h3>Nightly summary</h3><p>At 9 PM: new enquiries, appointments booked, and the messages your team should reply to.</p>
+<div class="sum"><b>Today</b> · sample<br>Enquiries 11 · <em>all answered</em><br>Appointments 4 · Needs you 2</div></div>
+<div class="card rv"><div class="ico"><svg><use href="#i-monitor"/></svg></div><h3>Clinic software <span class="pill">Managed Ops</span></h3><p>Appointment software with no integration? Our browser agents can often work it the way a person would. We check your software before we promise anything.</p></div>
+</div></div></section>
+
+<section class="alt" id="safety"><div class="c">
+<div class="sh ctr rv"><span class="eyebrow">Safety first</span><h2>Built with clear limits.</h2><p>A clinic's front desk carries more responsibility than a shop's, so these rules are part of every clinic setup.</p></div>
+<div class="grid3">
+<div class="card rv"><div class="ico r"><svg><use href="#i-shield"/></svg></div><h3>No medical advice</h3><p>It never diagnoses, suggests medicines or comments on reports. Symptoms and treatment questions go straight to your team, and urgent-sounding messages tell the patient to seek emergency care.</p></div>
+<div class="card rv"><div class="ico gr"><svg><use href="#i-check"/></svg></div><h3>Only your approved answers</h3><p>Fees, timings and policies come from a list you approve. If something isn't on it, the assistant says your team will reply instead of guessing.</p></div>
+<div class="card rv"><div class="ico b"><svg><use href="#i-search"/></svg></div><h3>Honest and private</h3><p>It says it's an AI assistant when asked. It doesn't ask for reports or health records in chat, and you can ask us to export or delete your data at any time.</p></div>
+</div></div></section>
+
+<section id="how"><div class="c">
+<div class="sh ctr rv"><span class="eyebrow">How it works</span><h2>Live in about a week, in 3 steps.</h2><p>No new software for your staff. We do the setup; you approve it on WhatsApp.</p></div>
+<div class="steps">
+<div class="step rv"><div class="n">1</div><h3>Free call</h3><p>A 20-minute call about how appointments and enquiries work at your clinic today, and what's worth automating first.</p><span class="t">You: 20 minutes</span></div>
+<div class="step rv"><div class="n">2</div><h3>We build and test</h3><p>We load doctors' schedules, fees, rules and your tone of voice, then test it with your team before patients see it.</p><span class="t">Us: setup &amp; testing</span></div>
+<div class="step rv"><div class="n">3</div><h3>It runs, you steer</h3><p>It handles the front desk around the clock. You get a nightly summary and can change anything with one WhatsApp message.</p><span class="t">Ongoing: we monitor &amp; tune</span></div>
+</div></div></section>
+
+<section class="alt" id="pilot"><div class="c"><div class="pilot rv">
+<div><span class="eyebrow">Pilot programme</span><h2 style="margin-top:14px">3 pilot spots at 50% off.</h2><p>Same plans as on our <a href="../#pricing" style="text-decoration:underline">pricing</a>, at half price for the first 3 businesses, so we can give each one close attention. Feedback after 30 days is optional and never scripted.</p>
+<div class="ctas" style="margin-top:28px"><a class="btn btn-wa" href="https://wa.me/919041315226?text=Hi%2C%20I%27d%20like%20a%20Quavok%20pilot%20spot%20for%20my%20clinic" target="_blank" rel="noopener"><svg><use href="#i-msg"/></svg>Ask about a pilot spot</a></div></div>
+<ul><li><svg><use href="#i-check"/></svg>Free audit and no setup fee</li><li><svg><use href="#i-check"/></svg>Starter at ₹2,499/mo or Growth at ₹4,999/mo for 3 months</li><li><svg><use href="#i-check"/></svg>Cancel anytime during the pilot</li><li><svg><use href="#i-check"/></svg>No GST charged (not GST-registered)</li></ul>
+</div></div></section>
+
+<section id="faq"><div class="c">
+<div class="sh ctr rv"><span class="eyebrow">FAQ</span><h2>Questions clinics ask us.</h2></div>
+<div class="faq">
+<details><summary>Will it ever give medical advice?<svg><use href="#i-plus"/></svg></summary><p>No. It's set up for front-desk tasks only. Any question about symptoms, medicines, reports or treatment is passed to your team, and the patient is told a person will reply.</p></details>
+<details><summary>We already have a receptionist. Why add this?<svg><use href="#i-plus"/></svg></summary><p>It doesn't replace your receptionist. It covers the hours and moments they can't: after closing, Sundays, and when they're busy with patients at the counter. Your receptionist can take over any chat at any time.</p></details>
+<details><summary>Will patients know it's an AI?<svg><use href="#i-plus"/></svg></summary><p>Yes, if they ask. It never pretends to be a person or a doctor.</p></details>
+<details><summary>Does it work with our clinic software?<svg><use href="#i-plus"/></svg></summary><p>Often, yes, either through a calendar or Google Sheet, or on Managed Ops through browser automation. We check your software on the call before we promise anything.</p></details>
+<details><summary>Do we need a new WhatsApp number?<svg><use href="#i-plus"/></svg></summary><p>Usually not. Automated replies run on the WhatsApp Business Platform, and we help you move your existing clinic number onto it where possible.</p></details>
+<details><summary>What about patient data?<svg><use href="#i-plus"/></svg></summary><p>Each clinic gets its own separate assistant and data. It collects only what's needed to book (name, phone, preferred time) and doesn't ask for health records in chat. See our <a href="../privacy/" style="text-decoration:underline">Privacy Policy</a>.</p></details>
+</div></div></section>
+
+<section id="contact"><div class="c"><div class="cta rv">
+<h2>Let your front desk breathe.</h2><p class="lead">Book a free 20-minute call. We'll show you the demo and tell you honestly what's worth automating at your clinic.</p>
+<div class="ctas"><a class="btn btn-wa" href="../book/"><svg><use href="#i-msg"/></svg>Book a free call</a><a class="btn btn-g" href="../demo/"><svg><use href="#i-play"/></svg>Try the live demo</a></div>
+<p style="margin-top:18px;color:var(--mute);font-size:14px">+91 90413 15226 · hello@quavok.com</p>
+</div></div></section>
+
+<footer><div class="c foot">
+<div><a href="../" class="logo"><span class="mk"><svg><use href="#i-logo"/></svg></span><span>qua<b>vok</b></span></a><p style="margin-top:12px;max-width:320px">AI assistants for WhatsApp, built and run for you.</p></div>
+<nav><a href="../pricing/">Pricing</a><a href="../demo/">Demo</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><a href="../refund/">Refunds</a><a href="../pay/">Pay</a><a href="../contact/">Contact</a><a href="../book/">Book a call</a><a href="https://wa.me/919041315226" target="_blank" rel="noopener">WhatsApp</a></nav>
+</div><div class="c" style="margin-top:30px;font-size:13px">© 2026 Quavok</div></footer>
+<script>
+const nav=document.getElementById('nav');addEventListener('scroll',()=>nav.classList.toggle('s',scrollY>8),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script></body></html>
