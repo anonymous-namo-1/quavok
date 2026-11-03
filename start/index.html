@@ -59,6 +59,12 @@
 <label for="ad">Full address <span class=hint>(as customers should see it)</span></label><input id="ad" placeholder="">
 <div class="row2"><div><label for="mp">Google Maps link <span class=hint>(optional)</span></label><input id="mp" placeholder="https://maps.app.goo.gl/…"></div><div><label for="ig">Instagram / website <span class=hint>(optional)</span></label><input id="ig" placeholder=""></div></div>
 </fieldset>
+<fieldset id="clin" hidden><legend>Clinic details</legend>
+<p class="fine" style="margin:4px 0 0">Your assistant handles the front desk only: timings, fees, bookings and reminders. It never gives medical advice. Please don't put any patient details in this form.</p>
+<label for="dr">Doctors and their OPD timings <span class=hint>(one per line)</span></label><textarea id="dr" rows="4" placeholder="Dr. A. Sharma (dentist) – Mon–Sat 10 AM – 2 PM&#10;Dr. B. Kaur (orthodontist) – Tue, Thu 5 – 8 PM"></textarea>
+<label for="ug">What should the assistant tell someone with an emergency? <span class=hint>(we send exactly this)</span></label><textarea id="ug" rows="3" placeholder="e.g. Please call the clinic on +91 … right away. If it is serious, go to the nearest hospital or call 112."></textarea>
+<label for="hx">Topics it must always hand over to your team <span class=hint>(optional)</span></label><textarea id="hx" rows="3" placeholder="e.g. any pain or symptoms, reports, medicines, insurance, treatment cost estimates"></textarea>
+</fieldset>
 <fieldset><legend>2. Timings</legend>
 <div class="row2"><div><label for="hr">Opening hours</label><input id="hr" placeholder="e.g. 10 AM – 8 PM" required></div><div><label for="off">Weekly off</label><input id="off" placeholder="e.g. Tuesday"></div></div>
 <label for="hol">Holidays or special timings <span class=hint>(optional)</span></label><input id="hol" placeholder="e.g. closed on Diwali; open till 10 PM in wedding season">
@@ -90,13 +96,17 @@
 </form></main>
 <script>
 (function(){var WA="919041315226",d=document,F=d.getElementById("f"),K="qv-start";
-var L={bn:"Business",on:"Contact",ty:"Type",pl:"Plan",ad:"Address",mp:"Maps",ig:"Instagram/website",hr:"Hours",off:"Weekly off",hol:"Holidays",sv:"Services & prices",pk:"Packages/offers",st:"Staff/chairs",bw:"Booking window",cx:"Cancellation/advance rules",pm:"Payment modes",fq:"FAQs",lg:"Language",em:"Emojis",hn:"Handover number",qh:"Quiet hours",ds:"Daily summary",ws:"Customer WhatsApp number",nt:"Notes"};
+var L={bn:"Business",on:"Contact",ty:"Type",pl:"Plan",ad:"Address",mp:"Maps",ig:"Instagram/website",hr:"Hours",off:"Weekly off",hol:"Holidays",sv:"Services & prices",pk:"Packages/offers",st:"Staff/chairs",bw:"Booking window",cx:"Cancellation/advance rules",pm:"Payment modes",fq:"FAQs",lg:"Language",em:"Emojis",hn:"Handover number",qh:"Quiet hours",ds:"Daily summary",ws:"Customer WhatsApp number",nt:"Notes",dr:"Doctors & OPD timings",ug:"Emergency message",hx:"Always hand over"};
+var C=["dr","ug","hx"],tyE=d.getElementById("ty"),P={sv:["Haircut (women) – ₹500 – 45 min\nFacial – ₹1,200 – 60 min\nBridal makeup package – from ₹15,000","Consultation – ₹500 – 15 min\nScaling and polishing – ₹1,500 – 30 min\nRoot canal – from ₹5,000 (after check-up)"],st:["e.g. 3 stylists","e.g. 2 doctors, 1 chair each"],cx:["e.g. reschedule free up to 3 hours before; ₹1,000 advance for bridal","e.g. reschedule free up to 2 hours before; no advance needed"],fq:["Parking? – Free parking in front\nWalk-ins? – Yes, but booking is faster\nHome service? – Only for bridal","Parking? – Free parking in front\nWalk-ins? – Yes, but booking is faster\nDo you accept insurance? – Our team will confirm"]};
+function isC(){return tyE.value==="Clinic"}
+function sync(){var c=isC();d.getElementById("clin").hidden=!c;Object.keys(P).forEach(function(i){d.getElementById(i).placeholder=P[i][c?1:0]})}
 var ids=Object.keys(L);
 try{var sv=JSON.parse(localStorage.getItem(K)||"{}");ids.forEach(function(i){if(sv[i])d.getElementById(i).value=sv[i]})}catch(x){}
+sync();tyE.addEventListener("change",sync);
 F.addEventListener("input",function(){var o={};ids.forEach(function(i){o[i]=d.getElementById(i).value});try{localStorage.setItem(K,JSON.stringify(o))}catch(x){}});
 function v(i){return d.getElementById(i).value.trim()}
-function text(){var t="Hi Quavok, here are my onboarding details.\n";ids.forEach(function(i){var x=v(i);if(x)t+=(x.indexOf("\n")>-1?"\n*"+L[i]+":*\n"+x+"\n":"\n*"+L[i]+":* "+x)});return t+"\n\nConsent to process chats: yes"}
-function check(){var e=d.getElementById("e");var miss=["bn","on","hr","sv","hn"].filter(function(i){return !v(i)});
+function text(){var t="Hi Quavok, here are my onboarding details.\n";ids.forEach(function(i){var x=v(i);if(x&&(isC()||C.indexOf(i)<0))t+=(x.indexOf("\n")>-1?"\n*"+L[i]+":*\n"+x+"\n":"\n*"+L[i]+":* "+x)});return t+"\n\nConsent to process chats: yes"}
+function check(){var e=d.getElementById("e");var miss=["bn","on","hr","sv","hn"].concat(isC()?["ug"]:[]).filter(function(i){return !v(i)});
 if(miss.length){e.textContent="Please fill in: "+miss.map(function(i){return L[i]}).join(", ")+".";d.getElementById(miss[0]).focus();return false}
 if(!d.getElementById("cn").checked){e.textContent="Please tick the consent box.";return false}e.textContent="";return true}
 F.onsubmit=function(ev){ev.preventDefault();if(!check())return;var t=text(),u="https://wa.me/"+WA+"?text="+encodeURIComponent(t);
