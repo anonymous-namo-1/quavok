@@ -21,7 +21,7 @@
 
 @media(min-width:861px){.bk{grid-template-columns:1fr 1.6fr}}
 .fm fieldset{border:0;padding:0;margin:0 0 6px}.fm legend{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px;margin-top:26px;padding:0}
-.fm fieldset:first-of-type legend{margin-top:6px}.hint{font-weight:400;color:var(--mute)}
+.fm fieldset:first-of-type legend{margin-top:6px}.fm p.hi{margin:4px 0 2px;font-size:14px;color:var(--mute);font-style:italic}.hint{font-weight:400;color:var(--mute)}
 .ck{display:flex!important;gap:10px;align-items:flex-start;font-weight:500!important}.fm .ck input{width:18px;height:18px;flex:none;margin-top:3px}
 .btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btns .btn{margin-top:14px}.btn-o{background:#fff;border:1px solid var(--line);color:var(--ink)}
 .ok{color:#15803d;font-size:14px;min-height:20px;margin-top:8px}
@@ -54,34 +54,41 @@
 <p style="margin-top:22px;color:var(--mute);font-size:14px">Stuck on something? <a style="color:var(--brand);font-weight:600" href="https://wa.me/919041315226?text=Hi%20Quavok%2C%20I%20have%20a%20question%20about%20onboarding" target="_blank" rel="noopener">Ask us on WhatsApp</a>.</p></div>
 <form class="fm" id="f" novalidate>
 <fieldset><legend>1. Your business</legend>
+<p class="hi" lang="hi-Latn">Apne business ka naam, address aur contact likhiye.</p>
 <div class="row2"><div><label for="bn">Business name</label><input id="bn" placeholder="" required></div><div><label for="on">Owner / contact name</label><input id="on" placeholder="" required></div></div>
 <div class="row2"><div><label for="ty">Type of business</label><select id="ty"><option>Salon / beauty studio</option><option>Clinic</option><option>Gym / fitness studio</option><option>Coaching / classes</option><option>Shop / retail</option><option>Other</option></select></div><div><label for="pl">Plan you chose</label><select id="pl"><option>Pilot</option><option>Starter</option><option>Growth</option><option>Managed Ops</option><option>Not decided yet</option></select></div></div>
 <label for="ad">Full address <span class=hint>(as customers should see it)</span></label><input id="ad" placeholder="">
 <div class="row2"><div><label for="mp">Google Maps link <span class=hint>(optional)</span></label><input id="mp" placeholder="https://maps.app.goo.gl/…"></div><div><label for="ig">Instagram / website <span class=hint>(optional)</span></label><input id="ig" placeholder=""></div></div>
 </fieldset>
 <fieldset id="clin" hidden><legend>Clinic details</legend>
+<p class="hi" lang="hi-Latn">Doctors ki timings aur emergency message bilkul waise likhiye jaise bhejna hai.</p>
 <p class="fine" style="margin:4px 0 0">Your assistant handles the front desk only: timings, fees, bookings and reminders. It never gives medical advice. Please don't put any patient details in this form.</p>
 <label for="dr">Doctors and their OPD timings <span class=hint>(one per line)</span></label><textarea id="dr" rows="4" placeholder="Dr. A. Sharma (dentist) – Mon–Sat 10 AM – 2 PM&#10;Dr. B. Kaur (orthodontist) – Tue, Thu 5 – 8 PM"></textarea>
 <label for="ug">What should the assistant tell someone with an emergency? <span class=hint>(we send exactly this)</span></label><textarea id="ug" rows="3" placeholder="e.g. Please call the clinic on +91 … right away. If it is serious, go to the nearest hospital or call 112."></textarea>
 <label for="hx">Topics it must always hand over to your team <span class=hint>(optional)</span></label><textarea id="hx" rows="3" placeholder="e.g. any pain or symptoms, reports, medicines, insurance, treatment cost estimates"></textarea>
 </fieldset>
 <fieldset><legend>2. Timings</legend>
+<p class="hi" lang="hi-Latn">Aapka business kab khulta aur band hota hai, aur hafte ki chhutti kab hai.</p>
 <div class="row2"><div><label for="hr">Opening hours</label><input id="hr" placeholder="e.g. 10 AM – 8 PM" required></div><div><label for="off">Weekly off</label><input id="off" placeholder="e.g. Tuesday"></div></div>
 <label for="hol">Holidays or special timings <span class=hint>(optional)</span></label><input id="hol" placeholder="e.g. closed on Diwali; open till 10 PM in wedding season">
 </fieldset>
 <fieldset><legend>3. Services and prices</legend>
+<p class="hi" lang="hi-Latn">Har service ka rate aur kitna time lagta hai. Rate list ki photo bhi chalegi.</p>
 <label for="sv">Service menu with prices and time taken <span class=hint>(one per line, or paste your rate list)</span></label><textarea id="sv" rows="6" placeholder="Haircut (women) – ₹500 – 45 min&#10;Facial – ₹1,200 – 60 min&#10;Bridal makeup package – from ₹15,000" required></textarea>
 <label for="pk">Packages, offers or memberships <span class=hint>(optional)</span></label><textarea id="pk" rows="3" placeholder="Only offers you want the assistant to mention"></textarea>
 </fieldset>
 <fieldset><legend>4. Bookings</legend>
+<p class="hi" lang="hi-Latn">Ek time pe kitne log kaam karte hain, aur booking ya cancel ke rules.</p>
 <div class="row2"><div><label for="st">Staff / chairs available at once</label><input id="st" placeholder="e.g. 3 stylists"></div><div><label for="bw">How far ahead can people book?</label><input id="bw" placeholder="e.g. up to 14 days"></div></div>
 <label for="cx">Cancellation, rescheduling and advance payment rules</label><textarea id="cx" rows="3" placeholder="e.g. reschedule free up to 3 hours before; ₹1,000 advance for bridal"></textarea>
 <label for="pm">Payment modes you accept</label><input id="pm" placeholder="e.g. cash, UPI, cards">
 </fieldset>
 <fieldset><legend>5. Common questions</legend>
+<p class="hi" lang="hi-Latn">Customers jo sawaal baar baar poochte hain, unke jawab ke saath.</p>
 <label for="fq">Questions customers often ask, with your answers <span class=hint>(up to 15)</span></label><textarea id="fq" rows="6" placeholder="Parking? – Free parking in front&#10;Walk-ins? – Yes, but booking is faster&#10;Home service? – Only for bridal"></textarea>
 </fieldset>
 <fieldset><legend>6. How the assistant should talk and hand over</legend>
+<p class="hi" lang="hi-Latn">Assistant kis bhasha mein baat kare, aur zaroori chat kis number pe aapko bheje.</p>
 <div class="row2"><div><label for="lg">Language</label><select id="lg"><option>Hinglish</option><option>Hindi</option><option>Punjabi</option><option>English</option><option>Match the customer</option></select></div><div><label for="em">Emojis</label><select id="em"><option>A few are fine</option><option>None</option></select></div></div>
 <div class="row2"><div><label for="hn">WhatsApp number for handover to you</label><input id="hn" placeholder="+91 …" required></div><div><label for="qh">Quiet hours (don't disturb you)</label><input id="qh" placeholder="e.g. 10 PM – 8 AM"></div></div>
 <div class="row2"><div><label for="ds">Daily summary time</label><input id="ds" placeholder="9 PM"></div><div><label for="ws">WhatsApp number customers message today <span class=hint>(if different)</span></label><input id="ws" placeholder="+91 …"></div></div>
