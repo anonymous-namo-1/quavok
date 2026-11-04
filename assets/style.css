@@ -120,3 +120,4 @@ svg use{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke
 @media(max-width:520px){.f1{left:-6px;top:40px}.f2{right:-6px;bottom:70px}.ctas .btn{flex:1 1 100%;justify-content:center}.nav .btn{padding:9px 13px;font-size:13.5px}.hero .eyebrow{font-size:12px}.float{padding:9px 11px}.float .ic,.float .ico{width:28px!important;height:28px!important}}
 @media(max-width:520px){.f1{top:-22px}}
 .legal table{border-collapse:collapse;width:100%;margin:12px 0}.legal td,.legal th{border:1px solid var(--line);padding:9px 12px;text-align:left;background:#fff;font-size:15px}.legal a{color:var(--brand);text-decoration:underline;text-underline-offset:2px}.legal a.btn{text-decoration:none}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
