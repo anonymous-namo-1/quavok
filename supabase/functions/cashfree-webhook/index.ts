@@ -32,18 +32,25 @@ Deno.serve(async (req) => {
     const { data: p } = must(await db.from("payments").update({ status: "PAID", raw: d }).eq("id", d.order.order_id).select().maybeSingle());
     if (p?.user_id) await nextInvoice(p.user_id, p.amount_paise, p.id);
   } else if (type.startsWith("PAYMENT_FAILED") && d.order?.order_id) {
-    must(await db.from("payments").update({ status: "FAILED", raw: d }).eq("id", d.order.order_id));
+    // Never downgrade: a late FAILED for an earlier attempt must not undo a PAID order.
+    must(await db.from("payments").update({ status: "FAILED", raw: d }).eq("id", d.order.order_id).neq("status", "PAID"));
   } else if (type === "SUBSCRIPTION_STATUS_CHANGED") {
     const s = d.subscription_details ?? d;
     must(await db.from("subscriptions").update({ status: s.subscription_status, updated_at: new Date().toISOString(),
       next_charge_date: s.next_schedule_date?.slice(0, 10) ?? null }).eq("id", s.subscription_id));
-  } else if (type === "SUBSCRIPTION_PAYMENT_SUCCESS" || type === "SUBSCRIPTION_PAYMENT_FAILED") {
-    const ok = type.endsWith("SUCCESS"), subId = d.subscription_id, pid = String(d.cf_payment_id ?? d.payment_id ?? `${subId}_${Date.now()}`);
+  } else if (["SUBSCRIPTION_PAYMENT_SUCCESS", "SUBSCRIPTION_PAYMENT_FAILED", "SUBSCRIPTION_PAYMENT_CANCELLED"].includes(type)) {
+    const ok = type.endsWith("SUCCESS"), subId = d.subscription_id;
+    // Deterministic id so Cashfree retries of the same event hit the same row (and the same invoice).
+    const pid = String(d.cf_payment_id ?? d.payment_id ?? `${subId}_${ev.event_time ?? ""}`);
     const { data: s } = must(await db.from("subscriptions").select("*").eq("id", subId).maybeSingle());
     if (s) {
-      must(await db.from("payments").upsert({ id: pid, user_id: s.user_id, subscription_id: subId, kind: "subscription",
-        plan_key: s.plan_key, amount_paise: Math.round((d.payment_amount ?? s.amount_paise / 100) * 100), status: ok ? "PAID" : "FAILED", raw: d }));
-      if (ok && (d.payment_type ?? "CHARGE") !== "AUTH") await nextInvoice(s.user_id, s.amount_paise, pid);
+      const { data: prev } = must(await db.from("payments").select("status").eq("id", pid).maybeSingle());
+      if (ok || prev?.status !== "PAID") {
+        const amount = d.payment_amount != null ? Math.round(Number(d.payment_amount) * 100) : s.amount_paise;
+        must(await db.from("payments").upsert({ id: pid, user_id: s.user_id, subscription_id: subId, kind: "subscription",
+          plan_key: s.plan_key, amount_paise: amount, status: ok ? "PAID" : type.endsWith("CANCELLED") ? "CANCELLED" : "FAILED", raw: d }));
+        if (ok && (d.payment_type ?? "CHARGE") !== "AUTH") await nextInvoice(s.user_id, amount, pid);
+      }
     }
   }
   } catch (e) {
