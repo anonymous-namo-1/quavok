@@ -1,4 +1,5 @@
 /* Online checkout via Supabase Edge Function + Cashfree. Hidden unless configured. */
+import { phoneField, savePhone } from './phone.js';
 const C = window.QUAVOK_CONFIG || {}, box = document.getElementById('checkout');
 if (box && C.supabaseUrl && C.supabaseAnonKey) {
   const PLANS = { audit: 'Audit (one-time), ₹2,999', starter: 'Starter, ₹4,999/month + ₹9,999 setup',
@@ -6,7 +7,7 @@ if (box && C.supabaseUrl && C.supabaseAnonKey) {
     pilot_starter: 'Pilot: Starter, ₹2,499/month', pilot_growth: 'Pilot: Growth, ₹4,999/month' };
   box.hidden = false; document.getElementById('paynone').hidden = true;
   box.innerHTML = '<h2>Pay online</h2><p>Sign in first so your plan and invoices show in <a href="../account/">your account</a>. Monthly plans use UPI AutoPay or card mandate; setup fees are invoiced separately. Cancel as per our <a href="../terms/">terms</a>.</p>' +
-    Object.entries(PLANS).map(([k, v]) => `<p><button class="btn btn-p" type="button" data-plan="${k}">${v}</button></p>`).join('') + '<p id="cmsg" role="status" aria-live="polite"></p>';
+    `<p>${phoneField('cphone')}</p>` + Object.entries(PLANS).map(([k, v]) => `<p><button class="btn btn-p" type="button" data-plan="${k}">${v}</button></p>`).join('') + '<p id="cmsg" role="status" aria-live="polite"></p>';
   const msg = t => document.getElementById('cmsg').textContent = t;
   box.addEventListener('click', async e => {
     const plan = e.target.dataset?.plan; if (!plan) return;
@@ -15,6 +16,8 @@ if (box && C.supabaseUrl && C.supabaseAnonKey) {
       const sb = createClient(C.supabaseUrl, C.supabaseAnonKey);
       const { data: { session } } = await sb.auth.getSession();
       if (!session) { location.href = '../account/?next=pay'; return; }
+      try { await savePhone(sb, document.getElementById('cphone').value); }
+      catch (pe) { msg(pe.message); document.getElementById('cphone').focus(); return; }
       msg('Starting secure checkout…');
       const { data, error } = await sb.functions.invoke('cashfree-checkout', { body: { plan } });
       if (error || !data) throw error || new Error('No response');

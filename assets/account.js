@@ -1,3 +1,4 @@
+import { phoneField, savePhone } from './phone.js';
 const C = window.QUAVOK_CONFIG || {}, $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const inr = p => '₹' + (p / 100).toLocaleString('en-IN');
@@ -18,6 +19,11 @@ else {
     $('acc-in').hidden = !!session; $('acc-dash').hidden = !session;
     if (!session) return;
     $('who').textContent = session.user.email;
+    const { data: me } = await sb.from('customers').select('phone').eq('id', session.user.id).maybeSingle();
+    $('ph').innerHTML = `<form id="phf">${phoneField('phone', me?.phone || '')} <button class="btn" type="submit">Save</button> <span id="phm" role="status" aria-live="polite"></span></form>`;
+    $('phf').onsubmit = async e => { e.preventDefault();
+      try { const p = await savePhone(sb, $('phone').value); $('phone').value = p; $('phm').textContent = 'Saved.'; }
+      catch (err) { $('phm').textContent = err.message; } };
     const { data: subs } = await sb.from('subscriptions').select('*').order('created_at', { ascending: false });
     $('plan').innerHTML = subs?.length ? '<table><tr><th>Plan</th><th>Status</th><th>Amount</th><th>Next charge</th></tr>' +
       subs.map(s => `<tr><td>${esc(s.plan_name)}</td><td>${esc(s.status)}</td><td>${inr(s.amount_paise)}/month</td><td>${esc(s.next_charge_date || '–')}</td></tr>`).join('') + '</table>'
