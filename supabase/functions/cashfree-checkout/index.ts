@@ -16,9 +16,10 @@ Deno.serve(async (req) => {
   const p = PLANS[plan];
   if (!p) return json({ error: "unknown plan" }, 400);
   const { data: cust } = await admin.from("customers").select("*").eq("id", user.id).single();
+  if (!/^[6-9]\d{9}$/.test(cust?.phone ?? "")) return json({ error: "phone required" }, 400);
   const customer = {
     customer_id: user.id.replaceAll("-", ""), customer_email: user.email,
-    customer_phone: cust?.phone || "9999999999", customer_name: cust?.name || user.email,
+    customer_phone: cust.phone, customer_name: cust?.name || user.email,
   };
   const origin = Deno.env.get("SITE_ORIGIN") ?? "https://quavok.com";
   const id = `qv_${plan}_${Date.now()}`;
