@@ -31,7 +31,9 @@ Deno.serve(async (req) => {
     }) });
     const d = await r.json();
     if (!r.ok) return json({ error: d.message ?? "cashfree error" }, 502);
-    await admin.from("payments").insert({ id, user_id: user.id, kind: "order", plan_key: plan, amount_paise: p.amount * 100 });
+    const { error: dbErr } = await admin.from("payments").insert({ id, user_id: user.id, kind: "order", plan_key: plan, amount_paise: p.amount * 100 });
+    // Without this row the webhook can't match the payment, so never hand out a session.
+    if (dbErr) return json({ error: "could not save order, please retry" }, 500);
     return json({ payment_session_id: d.payment_session_id, order_id: id });
   }
 
@@ -46,7 +48,8 @@ Deno.serve(async (req) => {
   }) });
   const d = await r.json();
   if (!r.ok) return json({ error: d.message ?? "cashfree error" }, 502);
-  await admin.from("subscriptions").insert({ id, user_id: user.id, plan_key: plan, plan_name: p.name,
+  const { error: dbErr } = await admin.from("subscriptions").insert({ id, user_id: user.id, plan_key: plan, plan_name: p.name,
     amount_paise: p.amount * 100, status: d.subscription_status ?? "INITIALIZED", cf_subscription_id: d.cf_subscription_id });
+  if (dbErr) return json({ error: "could not save subscription, please retry" }, 500);
   return json({ subscription_session_id: d.subscription_session_id, subscription_id: id });
 });
