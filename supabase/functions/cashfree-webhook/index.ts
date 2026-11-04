@@ -21,9 +21,8 @@ Deno.serve(async (req) => {
   await db.from("webhook_events").insert({ event_type: type, payload: ev });
 
   const nextInvoice = async (user_id: string, amount_paise: number, payment_id: string) => {
-    const { count } = await db.from("invoices").select("*", { count: "exact", head: true });
-    await db.from("invoices").upsert({ user_id, amount_paise, payment_id,
-      number: `QV/2026-27/${String((count ?? 0) + 1).padStart(3, "0")}` }, { onConflict: "number" });
+    const { error } = await db.rpc("issue_invoice", { p_user: user_id, p_amount: amount_paise, p_payment: payment_id });
+    if (error) throw error;
   };
 
   if (type.startsWith("PAYMENT_SUCCESS") && d.order?.order_id) {           // one-time order
