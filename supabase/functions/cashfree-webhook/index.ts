@@ -18,7 +18,10 @@ Deno.serve(async (req) => {
   if (!(await valid(raw, ts, sig))) return new Response("bad signature", { status: 401 });
   const ev = JSON.parse(raw), type: string = ev.type ?? "", d = ev.data ?? {};
   const db = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
-  await db.from("webhook_events").insert({ event_type: type, payload: ev });
+  // Any DB error -> 500 so Cashfree retries instead of us silently dropping a payment update.
+  const must = <T extends { error: unknown }>(r: T) => { if (r.error) throw r.error; return r; };
+  try {
+  must(await db.from("webhook_events").insert({ event_type: type, payload: ev }));
 
   const nextInvoice = async (user_id: string, amount_paise: number, payment_id: string) => {
     const { error } = await db.rpc("issue_invoice", { p_user: user_id, p_amount: amount_paise, p_payment: payment_id });
@@ -26,22 +29,26 @@ Deno.serve(async (req) => {
   };
 
   if (type.startsWith("PAYMENT_SUCCESS") && d.order?.order_id) {           // one-time order
-    const { data: p } = await db.from("payments").update({ status: "PAID", raw: d }).eq("id", d.order.order_id).select().single();
+    const { data: p } = must(await db.from("payments").update({ status: "PAID", raw: d }).eq("id", d.order.order_id).select().maybeSingle());
     if (p?.user_id) await nextInvoice(p.user_id, p.amount_paise, p.id);
   } else if (type.startsWith("PAYMENT_FAILED") && d.order?.order_id) {
-    await db.from("payments").update({ status: "FAILED", raw: d }).eq("id", d.order.order_id);
+    must(await db.from("payments").update({ status: "FAILED", raw: d }).eq("id", d.order.order_id));
   } else if (type === "SUBSCRIPTION_STATUS_CHANGED") {
     const s = d.subscription_details ?? d;
-    await db.from("subscriptions").update({ status: s.subscription_status, updated_at: new Date().toISOString(),
-      next_charge_date: s.next_schedule_date?.slice(0, 10) ?? null }).eq("id", s.subscription_id);
+    must(await db.from("subscriptions").update({ status: s.subscription_status, updated_at: new Date().toISOString(),
+      next_charge_date: s.next_schedule_date?.slice(0, 10) ?? null }).eq("id", s.subscription_id));
   } else if (type === "SUBSCRIPTION_PAYMENT_SUCCESS" || type === "SUBSCRIPTION_PAYMENT_FAILED") {
     const ok = type.endsWith("SUCCESS"), subId = d.subscription_id, pid = String(d.cf_payment_id ?? d.payment_id ?? `${subId}_${Date.now()}`);
-    const { data: s } = await db.from("subscriptions").select("*").eq("id", subId).single();
+    const { data: s } = must(await db.from("subscriptions").select("*").eq("id", subId).maybeSingle());
     if (s) {
-      await db.from("payments").upsert({ id: pid, user_id: s.user_id, subscription_id: subId, kind: "subscription",
-        plan_key: s.plan_key, amount_paise: Math.round((d.payment_amount ?? s.amount_paise / 100) * 100), status: ok ? "PAID" : "FAILED", raw: d });
+      must(await db.from("payments").upsert({ id: pid, user_id: s.user_id, subscription_id: subId, kind: "subscription",
+        plan_key: s.plan_key, amount_paise: Math.round((d.payment_amount ?? s.amount_paise / 100) * 100), status: ok ? "PAID" : "FAILED", raw: d }));
       if (ok && (d.payment_type ?? "CHARGE") !== "AUTH") await nextInvoice(s.user_id, s.amount_paise, pid);
     }
+  }
+  } catch (e) {
+    console.error("webhook db error", e);
+    return new Response("db error, retry", { status: 500 });
   }
   return new Response("ok");
 });
