@@ -1,0 +1,36 @@
+// Routes all fetches to in-memory mocks, then loads the real function.
+const calls: any[] = [];
+let cfFail = false, insertFail = false, phone = "9876543210";
+const real = globalThis.fetch;
+globalThis.fetch = async (input: any, init: any = {}) => {
+  const url = typeof input === "string" ? input : input.url;
+  const body = init.body ?? (input instanceof Request ? await input.clone().text() : undefined);
+  const method = init.method ?? (input instanceof Request ? input.method : "GET");
+  const headers = new Headers(init.headers ?? (input instanceof Request ? input.headers : {}));
+  calls.push({ url, method, headers: Object.fromEntries(headers), body });
+  const j = (b: unknown, s = 200) => new Response(JSON.stringify(b), { status: s, headers: { "content-type": "application/json" } });
+  if (url.includes("/auth/v1/user")) return headers.get("authorization") === "Bearer good" ? j({ id: "11111111-2222-3333-4444-555555555555", email: "a@b.in", aud: "authenticated" }) : j({ msg: "bad jwt" }, 401);
+  if (url.includes("/rest/v1/customers")) return j({ id: "x", phone, name: "Asha" });
+  if (url.includes("/rest/v1/payments") || url.includes("/rest/v1/subscriptions")) return insertFail ? j({ message: "db down", code: "XX000" }, 500) : new Response(null, { status: 201 });
+  if (url.includes("sandbox.cashfree.com/pg/orders")) return cfFail ? j({ message: "bad request" }, 400) : j({ payment_session_id: "ps_1", order_id: "o" });
+  if (url.includes("sandbox.cashfree.com/pg/subscriptions")) return cfFail ? j({ message: "bad sub" }, 400) : j({ subscription_session_id: "ss_1", subscription_status: "INITIALIZED", cf_subscription_id: "cf1" });
+  return j({ error: "unmocked " + url }, 599);
+};
+Deno.env.set("SUPABASE_URL", "http://mock.supabase"); Deno.env.set("SUPABASE_SERVICE_ROLE_KEY", "srk");
+Deno.env.set("CASHFREE_APP_ID", "app"); Deno.env.set("CASHFREE_SECRET_KEY", "sec"); Deno.env.set("CASHFREE_ENV", "sandbox");
+await import("/workspace/syntheight/site/supabase/functions/cashfree-checkout/index.ts");
+await new Promise((r) => setTimeout(r, 300));
+const post = (b: unknown, auth = "Bearer good") => real("http://localhost:8000/", { method: "POST", headers: { authorization: auth, "content-type": "application/json" }, body: JSON.stringify(b) }).then(async (r) => [r.status, await r.text()]);
+const out = (n: string, v: unknown) => console.log(n.padEnd(28), JSON.stringify(v));
+out("no auth", await post({ plan: "audit" }, "Bearer bad"));
+out("unknown plan", await post({ plan: "x" }));
+out("bad json", await real("http://localhost:8000/", { method: "POST", headers: { authorization: "Bearer good" }, body: "{" }).then(async r=>[r.status, await r.text()]));
+phone = "12345"; out("bad phone", await post({ plan: "audit" })); phone = "9876543210";
+calls.length = 0; out("audit ok", await post({ plan: "audit" }));
+const o = calls.find((c) => c.url.includes("/orders")); out("order hdrs", { v: o.headers["x-api-version"], id: o.headers["x-client-id"] }); out("order body", JSON.parse(o.body));
+calls.length = 0; out("starter ok", await post({ plan: "starter" }));
+const s = calls.find((c) => c.url.includes("/subscriptions") && c.url.includes("cashfree")); out("sub hdrs", { v: s.headers["x-api-version"], idem: s.headers["x-idempotency-key"] }); out("sub body", JSON.parse(s.body));
+cfFail = true; out("cf fails", await post({ plan: "growth" })); cfFail = false;
+insertFail = true; out("db insert fails (order)", await post({ plan: "audit" })); out("db insert fails (sub)", await post({ plan: "starter" })); insertFail = false;
+out("GET", await real("http://localhost:8000/").then(async r=>[r.status, await r.text()]));
+Deno.exit(0);
